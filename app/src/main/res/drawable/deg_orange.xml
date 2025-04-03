@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Degradado Naranja hacia abajo -->
+    <gradient
+        android:startColor="#0D0700"
+        android:endColor="#FF6F00"
+        android:angle="90"/>
+
+    <!-- Esquinas redondeadas (si se desea) -->
+    <corners android:radius="0dp" />
+</shape>

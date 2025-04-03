@@ -1,0 +1,79 @@
+<resources>
+
+    <!-- Estilo base para todos los TextViews -->
+    <style name="TextViewBaseStyle">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <!-- Estilo para encabezados (textos grandes y llamativos) -->
+    <style name="TextViewHeaderStyle">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="TextViewHeaderBlackStyle">
+        <item name="android:textColor">@color/dark_black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/baloo</item>
+    </style>
+
+    <!-- Estilo para encabezados (textos grandes y llamativos) -->
+    <style name="AppNameStyle">
+        <item name="android:textColor">@color/dark_black</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/baloo_tamma</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Estilo para textos secundarios (más pequeños y discretos) -->
+    <style name="TextViewSecondaryStyle">
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+    </style>
+
+    <!-- Estilo para textos de botones -->
+    <style name="TextViewButtonStyle">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/lato</item>
+    </style>
+
+    <style name="ButtonBaseStyleDark">
+        <item name="android:background">@drawable/button_background_dark</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/lato</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="ButtonBaseStyleOrange">
+        <item name="android:background">@drawable/button_background_orange</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/baloo</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+    <style name="TextViewPlainStyle">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/baloo_2</item>
+        <item name="android:background">@drawable/textview_background</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+</resources>
