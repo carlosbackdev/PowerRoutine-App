@@ -1,15 +1,12 @@
-package com.powerroutine.Form;
+package com.powerroutine.form;
 
 import android.graphics.Color;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class LoginValidate {
     private EditText username;
     private EditText password;
 
-    public LoginValidate() {
-    }
 
     public LoginValidate(EditText username, EditText password) {
         this.username = username;

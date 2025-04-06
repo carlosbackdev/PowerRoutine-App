@@ -1,4 +1,4 @@
-package com.powerroutine.Model;
+package com.powerroutine.model;
 
 public class UserModel {
     private String username;

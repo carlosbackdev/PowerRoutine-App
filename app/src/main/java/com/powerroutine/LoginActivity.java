@@ -2,28 +2,30 @@ package com.powerroutine;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 
-import com.powerroutine.ControllerData.UserData;
-import com.powerroutine.Form.LoginValidate;
-import com.powerroutine.Model.UserModel;
+import com.powerroutine.controllerData.UserData;
+import com.powerroutine.dtd.LoginDtd;
+import com.powerroutine.form.LoginValidate;
+import com.powerroutine.model.UserModel;
+import com.powerroutine.controllerData.LoginCallback;
+
 
 public class LoginActivity extends AppCompatActivity {
     private EditText txtNombre,txtPasswd;
     private UserModel user;
     private LoginValidate form;
     private UserData userData;
+    private LoginDtd loginDtd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +56,38 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void login(View V){
+    public void login(View V) {
         foco();
-        if(form.validate()){
+        if (form.validate()) {
             insertarModelo();
+            try{
+                userData.login(user, new LoginCallback() {
+                    @Override
+                    public void onSuccess(LoginDtd loginResponse) {
+                        // Aquí manejamos la respuesta exitosa
+                        loginDtd = loginResponse;
+                        mostrarToast(loginDtd.getRespuesta());
+                        user=loginDtd.getUserModel();
+                    }
 
-            userData.login(user);
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        // Verificamos si errorMessage es nulo
+                        if (errorMessage == null || errorMessage.isEmpty()) {
+                            errorMessage = "Unknown error occurred.";
+                        }
+                        mostrarToast("Error: " + errorMessage);
+                        System.out.println("Error: " + errorMessage); // Esto te dará el error específico
+                    }
+                });
 
+            } catch (Exception e) {
+                System.out.println(e);
+                throw new RuntimeException(e);
+            }
         }
-
     }
+
 
     public void foco(){
         View currentFocus = this.getCurrentFocus();
@@ -79,12 +103,14 @@ public class LoginActivity extends AppCompatActivity {
     public void insertarModelo(){
         if(txtNombre.getText().toString().trim().contains("@")){
             user.setEmail(txtNombre.getText().toString().trim());
-            txtNombre.setText("email");
         }else{
             user.setUsername(txtNombre.getText().toString().trim());
         }
         user.setPassword(txtPasswd.getText().toString().trim());
 
+    }
+    private void mostrarToast(String mensaje) {
+        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
 
 }
