@@ -1,12 +1,38 @@
 package com.powerroutine.model;
 
 public class UserModel {
-    private String username;
+    private Long id;
+    private String name;
     private String password;
     private String email;
+    private Integer daysWeek;
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Integer getDaysWeek() {
+        return daysWeek;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
@@ -17,23 +43,18 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public void setDaysWeek(Integer daysWeek) {
+        this.daysWeek = daysWeek;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
     @Override
     public String toString() {
         return "UserModel{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", daysWeek=" + daysWeek +
                 '}';
     }
 }

@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         foco();
         if (form.validate()) {
             insertarModelo();
+            System.out.println(user.toString());
             try{
                 userData.login(user, new LoginCallback() {
                     @Override
@@ -67,7 +68,11 @@ public class LoginActivity extends AppCompatActivity {
                         // Aquí manejamos la respuesta exitosa
                         loginDtd = loginResponse;
                         mostrarToast(loginDtd.getRespuesta());
-                        user=loginDtd.getUserModel();
+                        System.out.println(loginDtd.toString());
+                        if(loginDtd.getUserModel() != null){
+                            user=loginDtd.getUserModel();
+                            System.out.println(user.toString());
+                        }
                     }
 
                     @Override
@@ -76,8 +81,14 @@ public class LoginActivity extends AppCompatActivity {
                         if (errorMessage == null || errorMessage.isEmpty()) {
                             errorMessage = "Unknown error occurred.";
                         }
-                        mostrarToast("Error: " + errorMessage);
-                        System.out.println("Error: " + errorMessage); // Esto te dará el error específico
+                        mostrarToast( errorMessage);
+                        if(errorMessage.contains("usuario")){
+                            txtNombre.setText(errorMessage);
+                            txtNombre.setTextColor(Color.RED);
+                        }else if(errorMessage.contains("Contraseña")){
+                            txtPasswd.setText(errorMessage);
+                            txtPasswd.setTextColor(Color.RED);
+                        }
                     }
                 });
 
@@ -102,9 +113,9 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void insertarModelo(){
         if(txtNombre.getText().toString().trim().contains("@")){
-            user.setEmail(txtNombre.getText().toString().trim());
+            user.setEmail(txtNombre.getText().toString().trim().toLowerCase());
         }else{
-            user.setUsername(txtNombre.getText().toString().trim());
+            user.setName(txtNombre.getText().toString().trim());
         }
         user.setPassword(txtPasswd.getText().toString().trim());
 
