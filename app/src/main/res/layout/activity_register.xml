@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#523A3636">
-
+    tools:context=".register">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -29,7 +28,7 @@
                 style="@style/AppNameStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/inicio"
+                android:text="@string/registroText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
@@ -65,7 +64,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="11dp" />
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/txtNombre"
@@ -74,13 +73,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@string/nombrePlain"
+                android:text="@string/registroNombre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Space
+            <EditText
+                android:id="@+id/txtEmail"
+                style="@style/TextViewPlainStyle"
                 android:layout_width="match_parent"
-                android:layout_height="22dp" />
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="@string/registroEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/txtPassword"
@@ -113,8 +119,8 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="login"
-                    android:text="@string/loginButton" />
+                    android:onClick="register"
+                    android:text="@string/resgisterButton" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -124,7 +130,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -134,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="register"
-                android:text="@string/registroText"
+                android:text="@string/loginText"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

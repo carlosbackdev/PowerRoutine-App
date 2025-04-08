@@ -98,6 +98,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+    public void register(View v){
+        //pasar a pantalla de registro
+    }
 
 
     public void foco(){

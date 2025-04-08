@@ -30,7 +30,7 @@ public class UserData {
                 if (response.isSuccessful()) {
                     // Si la respuesta es exitosa, obtenemos el LoginDtd
                     LoginDtd loginResponse = response.body();
-                    System.out.println("rspuesta:" +response.body());
+                    System.out.println("respuesta:" +response.body());
                     if (loginResponse != null) {
                         // Llamamos al callback con el resultado exitoso
                         callback.onSuccess(loginResponse);
