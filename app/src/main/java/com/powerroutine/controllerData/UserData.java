@@ -35,7 +35,7 @@ public class UserData {
                         // Llamamos al callback con el resultado exitoso
                         callback.onSuccess(loginResponse);
                     } else {
-                        // Si la respuesta no tiene un cuerpo válido
+                        // Si la respuesta no tiene un cuerpo válid
                         callback.onFailure("Error: Response body is null");
                     }
                 } else {
