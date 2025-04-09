@@ -5,7 +5,7 @@
     <string name="contraseñaPlain">Contraseña</string>
     <string name="loginButton">Entrar</string>
     <string name="resgisterButton">Registrarse</string>
-    <string name="registroText">Registrarse</string>
+    <string name="registroText"><u>Registrarse</u></string>
     <string name="loginText"><u>Iniciar Sesión</u></string>
     <string name="registroNombre">Nombre de usuario</string>
     <string name="registroEmail">Email</string>

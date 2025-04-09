@@ -1,15 +1,14 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 
@@ -17,7 +16,8 @@ import com.powerroutine.controllerData.UserData;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.form.LoginValidate;
 import com.powerroutine.model.UserModel;
-import com.powerroutine.controllerData.LoginCallback;
+import com.powerroutine.interfaces.LoginCallback;
+import com.powerroutine.utils.FocoChange;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,10 +57,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View V) {
-        foco();
+        FocoChange.focoChange(this);
         if (form.validate()) {
             insertarModelo();
-            System.out.println(user.toString());
             try{
                 userData.login(user, new LoginCallback() {
                     @Override
@@ -99,21 +98,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void register(View v){
-        //pasar a pantalla de registro
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
-    public void foco(){
-        View currentFocus = this.getCurrentFocus();
-        if (currentFocus != null) {
-            currentFocus.clearFocus();
-
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            if (imm != null) {
-                imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
-            }
-        }
-    }
     public void insertarModelo(){
         if(txtNombre.getText().toString().trim().contains("@")){
             user.setEmail(txtNombre.getText().toString().trim().toLowerCase());
