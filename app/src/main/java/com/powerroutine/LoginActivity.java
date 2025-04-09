@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginDtd loginResponse) {
                         // Aquí manejamos la respuesta exitosa
+                        //aqui deber poner que si el oibjeto usuario tiene dias de semana o rutina deber poonerlo como saltar configuracion
                         loginDtd = loginResponse;
                         mostrarToast(loginDtd.getRespuesta());
                         System.out.println(loginDtd.toString());
@@ -98,9 +99,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void register(View v){
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 
