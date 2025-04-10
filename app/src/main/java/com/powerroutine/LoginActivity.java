@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginValidate form;
     private UserData userData;
     private LoginDtd loginDtd;
+    private Intent opcionUserActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         this.form= new LoginValidate(txtNombre,txtPasswd);
         this.userData=new UserData();
         this.user= new UserModel();
+        opcionUserActivity = new Intent(this, UserOpcionActivity.class);
 
 
         txtNombre.setOnFocusChangeListener((v, hasFocus) -> {
@@ -71,7 +73,10 @@ public class LoginActivity extends AppCompatActivity {
                         System.out.println(loginDtd.toString());
                         if(loginDtd.getUserModel() != null){
                             user=loginDtd.getUserModel();
-                            System.out.println(user.toString());
+                            opcionUserActivity.putExtra("user", user);
+                            startActivity(opcionUserActivity);
+                            finish();
+
                         }
                     }
 

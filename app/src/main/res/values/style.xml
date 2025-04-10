@@ -17,13 +17,13 @@
     <style name="TextViewHeaderStyle">
         <item name="android:textColor">@color/primary_color</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/fredoka_one</item>
     </style>
 
     <style name="TextViewHeaderBlackStyle">
         <item name="android:textColor">@color/dark_black</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">@font/baloo</item>
+        <item name="android:fontFamily">@font/fredoka_one</item>
     </style>
 
     <!-- Estilo para encabezados (textos grandes y llamativos) -->

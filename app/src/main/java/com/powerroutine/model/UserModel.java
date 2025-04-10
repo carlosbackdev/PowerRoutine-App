@@ -1,11 +1,31 @@
 package com.powerroutine.model;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserModel implements Serializable {
     private Long id;
     private String name;
     private String password;
     private String email;
     private Integer daysWeek;
+    private int level;
+    private String objective;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getObjective() {
+        return objective;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setObjective(String objective) {
+        this.objective = objective;
+    }
 
     public Integer getDaysWeek() {
         return daysWeek;
@@ -55,6 +75,8 @@ public class UserModel {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", daysWeek=" + daysWeek +
+                ", level=" + level +
+                ", objective='" + objective + '\'' +
                 '}';
     }
 }

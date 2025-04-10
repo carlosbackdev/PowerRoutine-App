@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PowerRoutine</string>
-    <string name="inicio"><u>INICIO DE SESIÓN</u></string>
+    <string name="inicio"><u>Inicio de Sesión</u></string>
     <string name="nombrePlain">Nombre de Usuario o Email</string>
     <string name="contraseñaPlain">Contraseña</string>
     <string name="loginButton">Entrar</string>
@@ -9,4 +9,16 @@
     <string name="loginText"><u>Iniciar Sesión</u></string>
     <string name="registroNombre">Nombre de usuario</string>
     <string name="registroEmail">Email</string>
+    <string name="headUserOpcion"><u>Configura tus objetivos</u></string>
+    <string name="daysweek">¿De cuantos dias a la semana quieres generar la rutina?</string>
+    <string name="level">¿Cual es tu nivel?</string>
+    <string name="btnPrincipiante">Principiante</string>
+    <string name="btnMedio">Intermedio</string>
+    <string name="btnPro">Profesional</string>
+    <string name="objetiveText">¿Cual es tu objetivo?</string>
+    <string name="objetiveHipertrofy">Hipertrofia</string>
+    <string name="objetiveStrong">Fuerza</string>
+    <string name="objetiveTono">Tonificar</string>
+    <string name="objetiveSavebtn">Guardar Preferencias</string>
+
 </resources>
