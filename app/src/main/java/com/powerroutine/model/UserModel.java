@@ -8,23 +8,23 @@ public class UserModel implements Serializable {
     private String password;
     private String email;
     private Integer daysWeek;
-    private int level;
-    private String objective;
+    private Integer idLevelRange;
+    private Integer idObjetive;
 
-    public int getLevel() {
-        return level;
+    public void setObjetive(Integer idObjective) {
+        this.idObjetive = idObjective;
     }
 
-    public String getObjective() {
-        return objective;
+    public Integer getObjetive() {
+        return idObjetive;
+    }
+
+    public int getLevel() {
+        return idLevelRange;
     }
 
     public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public void setObjective(String objective) {
-        this.objective = objective;
+        this.idLevelRange = level;
     }
 
     public Integer getDaysWeek() {
@@ -75,8 +75,8 @@ public class UserModel implements Serializable {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", daysWeek=" + daysWeek +
-                ", level=" + level +
-                ", objective='" + objective + '\'' +
+                ", level=" + idLevelRange +
+                ", objective=" + idObjetive +
                 '}';
     }
 }

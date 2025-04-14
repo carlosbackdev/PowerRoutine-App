@@ -20,5 +20,7 @@
     <string name="objetiveStrong">Fuerza</string>
     <string name="objetiveTono">Tonificar</string>
     <string name="objetiveSavebtn">Guardar Preferencias</string>
+    <string name="rutineSelectedTitle"><u>Seleciona una rutina</u></string>
+    <string name="diaTextSelected">Dia </string>
 
 </resources>

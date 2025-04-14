@@ -8,6 +8,7 @@ import com.powerroutine.config.RetrofitClient;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.interfaces.LoginCallback;
 import com.powerroutine.interfaces.RegisterCallBack;
+import com.powerroutine.interfaces.UpdateUserCallBack;
 import com.powerroutine.model.UserModel;
 
 import java.io.IOException;
@@ -119,5 +120,53 @@ public class UserData {
     });
 
     }
+    public void updateUser(UserModel user, final UpdateUserCallBack callback){
+        Call <LoginDtd> updateCall=apiService.update(user);
+
+        updateCall.enqueue(new Callback<LoginDtd>() {
+            @Override
+            public void onResponse(Call<LoginDtd> call, Response<LoginDtd> response) {
+                if (response.isSuccessful()) {
+                    LoginDtd loginResponse = response.body();
+                    System.out.println("respuesta:" +response.body());
+
+                    if (loginResponse != null) {
+                        callback.onSuccess(loginResponse);
+                    } else {
+                        callback.onFailure("Error: Response body is null");
+                    }
+                }
+                if (!response.isSuccessful()){
+                    Log.e("LoginError", "Response code: " + response.code());
+                    Log.e("LoginError", "Response body: " + response.errorBody());
+
+                    try {
+                        String errorJson = response.errorBody().string();
+                        Log.e("LoginError", "Error Response: " + errorJson);
+
+                        Gson gson = new Gson();
+                        LoginDtd respuesta = gson.fromJson(errorJson, LoginDtd.class);
+
+                        if (respuesta != null) {
+                            callback.onFailure(respuesta.getRespuesta());
+                        } else {
+                            callback.onFailure("Error: Unable to parse error response");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        callback.onFailure("Error: Unable to parse error response");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginDtd> call, Throwable t) {
+                Log.e("LoginError", "Error: " + t.getMessage());
+                callback.onFailure("Error: " + t.getMessage());
+            }
+        });
+
+    }
+
 
 }

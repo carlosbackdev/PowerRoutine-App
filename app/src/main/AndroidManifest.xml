@@ -16,6 +16,10 @@
         android:theme="@style/Theme.PowerRoutine"
         tools:targetApi="31">
         <activity
+            android:name=".RutineSelecetedActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".UserOpcionActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
