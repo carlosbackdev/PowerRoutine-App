@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.powerroutine.dtd.RutinaDtd;
 import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private UserModel user;
     private TableLayout tableLayout;
     private LayoutInflater inflater;
+    private RutinaDtd rutina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rutine_seleceted);
 
+        //cargarlo llamando a un metodo aparte
         this.txtDay = findViewById(R.id.txtDay);
         day=1;
         dayString = txtDay.getText().toString();
@@ -41,20 +44,21 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         tableLayout=findViewById(R.id.tablaRutinas);
         inflater=LayoutInflater.from(this);
 
-        List<Rutina> rutinas = new ArrayList<>();
-        rutinas.add(new Rutina("Pecho y Tríceps", "Fuerza y volumen", R.drawable.gym));
-        rutinas.add(new Rutina("Espalda y Bíceps", "Espalda ancha",  R.drawable.gym));
-        rutinas.add(new Rutina("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new Rutina("Hombros", "Definición total",  R.drawable.gym));
-        rutinas.add(new Rutina("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new Rutina("Hombros", "Definición total",  R.drawable.gym));
-        rutinas.add(new Rutina("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new Rutina("Hombros", "Definición total",  R.drawable.gym));
+        //intentar cargar con un arryalist
+        List<RutinaDtd> rutinas = new ArrayList<>();
+        rutinas.add(new RutinaDtd("Pecho y Tríceps", "Fuerza y volumen", R.drawable.gym));
+        rutinas.add(new RutinaDtd("Espalda y Bíceps", "Espalda ancha",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
 
         cargarTarjetas(rutinas);
     }
 
-    private void cargarTarjetas(List<Rutina> rutinas) {
+    private void cargarTarjetas(List<RutinaDtd> rutinas) {
         tableLayout.removeAllViews();
 
         for (int i = 0; i < rutinas.size(); i += 2) {
@@ -79,36 +83,23 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         }
     }
 
-    private View crearCard(Rutina rutina) {
+    private View crearCard(RutinaDtd rutina) {
         View card = inflater.inflate(R.layout.rutina_card, null);
 
         TextView titulo = card.findViewById(R.id.txtTituloCard);
         TextView descripcion = card.findViewById(R.id.txtDescCard);
         ImageView imagen = card.findViewById(R.id.imgRutina);
 
-        titulo.setText(rutina.titulo);
-        descripcion.setText(rutina.descripcion);
-        imagen.setImageResource(rutina.imagenResId);
+        titulo.setText(rutina.getTitulo());
+        descripcion.setText(rutina.getDescripcion());
+        imagen.setImageResource(rutina.getImagenResId());
 
         // Puedes añadir un onClickListener aquí si quieres que abra otra vista
         card.setOnClickListener(v -> {
-            Toast.makeText(this, "Rutina: " + rutina.titulo, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Rutina: " + rutina.getTitulo(), Toast.LENGTH_SHORT).show();
             // Aquí podrías cargar otro layout dinámicamente o abrir un detalle
         });
 
         return card;
-    }
-
-    // Clase de ejemplo para manejar rutinas
-    class Rutina {
-        String titulo;
-        String descripcion;
-        int imagenResId;
-
-        Rutina(String titulo, String descripcion, int imagenResId) {
-            this.titulo = titulo;
-            this.descripcion = descripcion;
-            this.imagenResId = imagenResId;
-        }
     }
 }
