@@ -15,7 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutinaDtd;
+import com.powerroutine.dtd.RutineListDtd;
+import com.powerroutine.interfaces.RutineListCallBack;
+import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
@@ -29,6 +33,10 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private TableLayout tableLayout;
     private LayoutInflater inflater;
     private RutinaDtd rutina;
+    private RutineListDtd rutineListDtd;
+    private ArrayList<RutineModel> rutinas;
+    private RutinaData rutineData;
+    private int userDayWeek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +45,58 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rutine_seleceted);
 
         //cargarlo llamando a un metodo aparte
+
         this.txtDay = findViewById(R.id.txtDay);
+        this.user = (UserModel) getIntent().getSerializableExtra("user");
+        userDayWeek=Integer.parseInt(user.getDaysWeek().toString());
         day=1;
         dayString = txtDay.getText().toString();
         txtDay.setText(dayString+" "+day);
+
         tableLayout=findViewById(R.id.tablaRutinas);
         inflater=LayoutInflater.from(this);
+        rutinas=new ArrayList<>();
+        rutineListDtd=new RutineListDtd();
+        rutineData=new RutinaData();
+
+        CargarRutinas();
+
+
 
         //intentar cargar con un arryalist
         List<RutinaDtd> rutinas = new ArrayList<>();
-        rutinas.add(new RutinaDtd("Pecho y Tríceps", "Fuerza y volumen", R.drawable.gym));
-        rutinas.add(new RutinaDtd("Espalda y Bíceps", "Espalda ancha",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.gym));
-        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.gym));
+        rutinas.add(new RutinaDtd("Pecho y Tríceps", "Fuerza y volumen", R.drawable.fullbody1));
+        rutinas.add(new RutinaDtd("Espalda y Bíceps", "Espalda ancha",  R.drawable.fullbody2));
+        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.fullbody3));
+        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.fullbody4));
+        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.fullbody5));
+        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.fullbody6));
 
         cargarTarjetas(rutinas);
+    }
+
+    public void CargarRutinas(){
+        try{
+            System.out.println("CARGANDO RUTINAS"+user.toString());
+            rutineData.getRutinesForDay(user,new RutineListCallBack() {
+                @Override
+                public void onSuccess(RutineListDtd rutineListDtd) {
+                    rutinas=rutineListDtd.getRutinas();
+                    mostrarToast(rutineListDtd.getRespuesta());
+
+                    // cargarTarjetas(rutineListDtd.getRutinas());
+                }
+
+                @Override
+                public void onFailure(String error) {
+                    System.out.println("Error al cargar rutinas: "+error);
+                    Toast.makeText(RutineSelecetedActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }catch (Exception e){
+            System.out.println("Error al cargar rutinas: "+e.getMessage());
+        }
     }
 
     private void cargarTarjetas(List<RutinaDtd> rutinas) {
@@ -101,5 +142,8 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         });
 
         return card;
+    }
+    private void mostrarToast(String mensaje) {
+        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
 }

@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginValidate form;
     private UserData userData;
     private LoginDtd loginDtd;
-    private Intent opcionUserActivity;
+    private Intent opcionUserActivity, rutineSelectedActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         this.userData=new UserData();
         this.user= new UserModel();
         opcionUserActivity = new Intent(this, UserOpcionActivity.class);
+        rutineSelectedActivity = new Intent(LoginActivity.this, RutineSelecetedActivity.class);
+
 
 
         txtNombre.setOnFocusChangeListener((v, hasFocus) -> {
@@ -71,12 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                         loginDtd = loginResponse;
                         mostrarToast(loginDtd.getRespuesta());
                         System.out.println(loginDtd.toString());
-                        if(loginDtd.getUserModel() != null){
+                        if(loginDtd.getUserModel().getDaysWeek() == null || loginDtd.getUserModel().getDaysWeek() <=1){
                             user=loginDtd.getUserModel();
                             opcionUserActivity.putExtra("user", user);
                             startActivity(opcionUserActivity);
                             finish();
 
+                        }else{
+                            rutineSelectedActivity.putExtra("user", loginDtd.getUserModel());
+                            startActivity(rutineSelectedActivity);
+                            finish();
                         }
                     }
 

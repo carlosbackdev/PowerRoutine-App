@@ -1,5 +1,6 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class UserOpcionActivity extends AppCompatActivity {
     private Integer objetive;
     private int opcionDays, opcionLevel;
     private String opcionObjetive;
+    private Intent rutineSelectedActivty;
 
 
     @Override
@@ -34,6 +36,7 @@ public class UserOpcionActivity extends AppCompatActivity {
         user = (UserModel) getIntent().getSerializableExtra("user");
         userData= new UserData();
         loginDtd = new LoginDtd();
+        rutineSelectedActivty = new Intent(this, RutineSelecetedActivity.class);
 
 
     }
@@ -103,6 +106,11 @@ public class UserOpcionActivity extends AppCompatActivity {
                         loginDtd = loginResponse;
                         mostrarToast(loginDtd.getRespuesta());
                         System.out.println(loginDtd.toString());
+
+                        rutineSelectedActivty.putExtra("user", loginDtd.getUserModel());
+                        startActivity(rutineSelectedActivty);
+                        finish();
+
                         if(loginDtd.getUserModel() != null){
                             user=loginDtd.getUserModel();
                         }
@@ -132,4 +140,5 @@ public class UserOpcionActivity extends AppCompatActivity {
     private void mostrarToast(String mensaje) {
         Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
+
 }
