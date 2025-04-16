@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutinaDtd;
 import com.powerroutine.dtd.RutineListDtd;
@@ -32,19 +33,17 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private UserModel user;
     private TableLayout tableLayout;
     private LayoutInflater inflater;
-    private RutinaDtd rutina;
-    private RutineListDtd rutineListDtd;
     private ArrayList<RutineModel> rutinas;
     private RutinaData rutineData;
     private int userDayWeek;
+    private CardRutine cardRutine;
+    private ArrayList<CardRutine> cardsCompent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rutine_seleceted);
-
-        //cargarlo llamando a un metodo aparte
 
         this.txtDay = findViewById(R.id.txtDay);
         this.user = (UserModel) getIntent().getSerializableExtra("user");
@@ -56,28 +55,14 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         tableLayout=findViewById(R.id.tablaRutinas);
         inflater=LayoutInflater.from(this);
         rutinas=new ArrayList<>();
-        rutineListDtd=new RutineListDtd();
         rutineData=new RutinaData();
+        cardsCompent=new ArrayList<>();
 
         CargarRutinas();
-
-
-
-        //intentar cargar con un arryalist
-        List<RutinaDtd> rutinas = new ArrayList<>();
-        rutinas.add(new RutinaDtd("Pecho y Tríceps", "Fuerza y volumen", R.drawable.fullbody1));
-        rutinas.add(new RutinaDtd("Espalda y Bíceps", "Espalda ancha",  R.drawable.fullbody2));
-        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.fullbody3));
-        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.fullbody4));
-        rutinas.add(new RutinaDtd("Piernas", "Ponte fuerte abajo",  R.drawable.fullbody5));
-        rutinas.add(new RutinaDtd("Hombros", "Definición total",  R.drawable.fullbody6));
-
-        cargarTarjetas(rutinas);
     }
 
     public void CargarRutinas(){
         try{
-            System.out.println("CARGANDO RUTINAS"+user.toString());
             rutineData.getRutinesForDay(user,new RutineListCallBack() {
                 @Override
                 public void onSuccess(RutineListDtd rutineListDtd) {
@@ -85,6 +70,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                     mostrarToast(rutineListDtd.getRespuesta());
 
                     // cargarTarjetas(rutineListDtd.getRutinas());
+                    cargarCardCompenent();
                 }
 
                 @Override
@@ -98,20 +84,28 @@ public class RutineSelecetedActivity extends AppCompatActivity {
             System.out.println("Error al cargar rutinas: "+e.getMessage());
         }
     }
+    public void cargarCardCompenent(){
+        for (RutineModel rutina: rutinas){
+            int imgResId = getResources().getIdentifier(rutina.getImage(), "drawable", getPackageName());
+            cardRutine=new CardRutine(rutina.getName(),rutina.getType(),imgResId);
+            cardsCompent.add(cardRutine);
+        }
+        cargarTarjetas(cardsCompent);
+    }
 
-    private void cargarTarjetas(List<RutinaDtd> rutinas) {
+    private void cargarTarjetas(ArrayList<CardRutine> cardsCompent) {
         tableLayout.removeAllViews();
 
-        for (int i = 0; i < rutinas.size(); i += 2) {
+        for (int i = 0; i < cardsCompent.size(); i += 2) {
             TableRow row = new TableRow(this);
 
             // Carga la primera tarjeta
-            View card1 = crearCard(rutinas.get(i));
+            View card1 = crearCard(cardsCompent.get(i));
             row.addView(card1);
 
             // Carga la segunda tarjeta si existe
-            if (i + 1 < rutinas.size()) {
-                View card2 = crearCard(rutinas.get(i + 1));
+            if (i + 1 < cardsCompent.size()) {
+                View card2 = crearCard(cardsCompent.get(i + 1));
                 row.addView(card2);
             } else {
                 // Si es impar, rellena con un espacio en blanco
@@ -124,20 +118,20 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         }
     }
 
-    private View crearCard(RutinaDtd rutina) {
+    private View crearCard(CardRutine cardsCompent) {
         View card = inflater.inflate(R.layout.rutina_card, null);
 
         TextView titulo = card.findViewById(R.id.txtTituloCard);
         TextView descripcion = card.findViewById(R.id.txtDescCard);
         ImageView imagen = card.findViewById(R.id.imgRutina);
 
-        titulo.setText(rutina.getTitulo());
-        descripcion.setText(rutina.getDescripcion());
-        imagen.setImageResource(rutina.getImagenResId());
+        titulo.setText(cardsCompent.getTitulo());
+        descripcion.setText(cardsCompent.getDescripcion());
+        imagen.setImageResource(cardsCompent.getImagenResId());
 
         // Puedes añadir un onClickListener aquí si quieres que abra otra vista
         card.setOnClickListener(v -> {
-            Toast.makeText(this, "Rutina: " + rutina.getTitulo(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Rutina: " + cardsCompent.getTitulo(), Toast.LENGTH_SHORT).show();
             // Aquí podrías cargar otro layout dinámicamente o abrir un detalle
         });
 
