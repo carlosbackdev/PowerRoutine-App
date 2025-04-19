@@ -3,6 +3,7 @@ package com.powerroutine;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,9 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RutineSelecetedActivity extends AppCompatActivity {
-    private TextView txtDay;
-    private int day;
-    private String dayString;
+    private TextView txtDay,txtDayRestChoice;
+    private Button btnSave;
+    private int day,dayRestInt;
+    private String dayString,dayRest;
     private UserModel user;
     private TableLayout tableLayout;
     private LayoutInflater inflater;
@@ -40,6 +42,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private ArrayList<CardRutine> cardsCompent;
     private ArrayList<RutineModel> rutinaSaved;
     private List<Integer> incompatibles;
+    private RutineListDtd saveRutineList=new RutineListDtd();
 
 
     @Override
@@ -50,10 +53,8 @@ public class RutineSelecetedActivity extends AppCompatActivity {
 
         this.txtDay = findViewById(R.id.txtDay);
         this.user = (UserModel) getIntent().getSerializableExtra("user");
-        userDayWeek=Integer.parseInt(user.getDaysWeek().toString());
-        day=1;
-        dayString = txtDay.getText().toString();
-        txtDay.setText(dayString+" "+day);
+        this.btnSave=findViewById(R.id.btnSave);
+        this.txtDayRestChoice= findViewById(R.id.txtDayRestChoice);
 
         tableLayout=findViewById(R.id.tablaRutinas);
         inflater=LayoutInflater.from(this);
@@ -62,7 +63,12 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         cardsCompent=new ArrayList<>();
         rutinaSaved= new ArrayList<>();
         incompatibles=new ArrayList<>();
+        day=0;
+        dayRestInt=user.getDaysWeek();
+        dayString = txtDay.getText().toString();
+        dayRest= txtDayRestChoice.getText().toString();
 
+        dayMore();
         CargarRutinas();
     }
 
@@ -132,6 +138,18 @@ public class RutineSelecetedActivity extends AppCompatActivity {
 
             tableLayout.addView(row);
         }
+        if(cardsCompent.size()==0){
+            TextView emptyMessage = new TextView(this);
+            emptyMessage.setTextAppearance(this, R.style.TextViewHeaderBlackStyle);
+            emptyMessage.setTextColor(getResources().getColor(R.color.text_grey));
+            emptyMessage.setText("No hay rutinas disponibles.");
+            emptyMessage.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            emptyMessage.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT
+            ));
+            tableLayout.addView(emptyMessage);
+        }
     }
 
     private View crearCard(CardRutine cardsCompent) {
@@ -144,6 +162,15 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         titulo.setText(cardsCompent.getTitulo());
         descripcion.setText(cardsCompent.getDescripcion());
         imagen.setImageResource(cardsCompent.getImagenResId());
+
+        // Configurar márgenes
+        TableRow.LayoutParams params = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        );
+        int margin = (int) getResources().getDimension(R.dimen.card_margin);
+        params.setMargins(margin, margin, margin, margin);
+        card.setLayoutParams(params);
 
         // Puedes añadir un onClickListener aquí si quieres que abra otra vista
         card.setOnClickListener(v -> {
@@ -158,12 +185,54 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                     break;
                 }
             }
+            dayMore();
             cargarTarjetas();
         });
 
         return card;
     }
+    public void dayMore(){
+        txtDay.setText("");
+        userDayWeek=Integer.parseInt(user.getDaysWeek().toString());
+        if(userDayWeek > day){
+            day++;
+            txtDay.setText(dayString+" "+day);
+        }else {
+            mostrarToast("Guarda las rutinas selecionadas ");
+            btnSave.setBackgroundResource(R.drawable.button_background_orange);
+            txtDay.setText("Semana completa");
+        }
+
+        if(dayRestInt > 0){
+            txtDayRestChoice.setText(dayRest+" "+dayRestInt);
+            dayRestInt--;
+        }else{
+            txtDayRestChoice.setText("Guarda y pasa a seleccionar los ejercicios");
+        }
+
+    }
+
     private void mostrarToast(String mensaje) {
         Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    public void reset(View v){
+        day=0;
+        dayRestInt=user.getDaysWeek();
+        incompatibles.clear();
+        rutinaSaved.clear();
+        cardsCompent.clear();
+        btnSave.setBackgroundResource(R.drawable.button_background_dark);
+        dayMore();
+        CargarRutinas();
+    }
+    public void saveSelected(View v){
+        if(rutinaSaved.size() == user.getDaysWeek()){
+            mostrarToast("siii");
+            saveRutineList.setUser(user);
+            saveRutineList.setRutinas(rutinaSaved);
+
+
+        }
     }
 }

@@ -1,16 +1,30 @@
 package com.powerroutine.dtd;
 
 import com.powerroutine.model.RutineModel;
+import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
 
 public class RutineListDtd {
     private ArrayList<RutineModel> rutinas;
     private String respuesta;
+    private UserModel user;
 
     public RutineListDtd(ArrayList<RutineModel> rutinas, String respuesta) {
         this.rutinas = rutinas;
         this.respuesta = respuesta;
+    }
+    public RutineListDtd(ArrayList<RutineModel> rutinas, UserModel user) {
+        this.rutinas = rutinas;
+        this.user = user;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
     public RutineListDtd() {

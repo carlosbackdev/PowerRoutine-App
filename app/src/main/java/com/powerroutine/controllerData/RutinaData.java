@@ -4,6 +4,7 @@ import com.powerroutine.config.ApiService;
 import com.powerroutine.config.RetrofitClient;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
+import com.powerroutine.interfaces.RutineUserCallback;
 import com.powerroutine.model.UserModel;
 
 import retrofit2.Call;
@@ -36,5 +37,28 @@ public class RutinaData {
             }
         });
 
+    }
+    public void saverRutineUser(RutineListDtd rutineListDtd, final RutineUserCallback callback){
+        Call<String> rutineResponse=apiService.setRutinesForUser(rutineListDtd);
+        rutineResponse.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body();
+                    if (responseBody != null) {
+                        callback.onSuccess(responseBody);
+                    } else {
+                        callback.onFailure("Error: " + response.code());
+                    }
+                } else {
+                    callback.onFailure("Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                callback.onFailure("Error: " + t.getMessage());
+            }
+        });
     }
 }

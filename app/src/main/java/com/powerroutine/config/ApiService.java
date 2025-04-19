@@ -20,4 +20,7 @@ public interface ApiService {
     Call<LoginDtd> update(@Body UserModel user);
     @POST("rutine/getRutine")
     Call<RutineListDtd> getRutinesForDay(@Body UserModel user);
+
+    @POST("rutine/saveRutineUser")
+    Call<String> setRutinesForUser(@Body RutineListDtd rutineListDtd);
 }

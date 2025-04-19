@@ -22,5 +22,7 @@
     <string name="objetiveSavebtn">Guardar Preferencias</string>
     <string name="rutineSelectedTitle"><u>Seleciona una rutina</u></string>
     <string name="diaTextSelected">Dia </string>
+    <string name="saveSelectedRutine">Guardar Selección</string>
+    <string name="dayRestChoice">Restantes por escoger:</string>
 
 </resources>
