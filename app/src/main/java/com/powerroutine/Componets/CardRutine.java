@@ -4,11 +4,21 @@ public class CardRutine {
     private String titulo;
     private String descripcion;
     private int imagenResId;
+    private int id;
 
-    public CardRutine(String titulo, String descripcion, int imagenResId) {
+    public CardRutine(String titulo, String descripcion, int imagenResId, int id) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagenResId = imagenResId;
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {

@@ -38,6 +38,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private int userDayWeek;
     private CardRutine cardRutine;
     private ArrayList<CardRutine> cardsCompent;
+    private ArrayList<RutineModel> rutinaSaved;
+    private List<Integer> incompatibles;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         rutinas=new ArrayList<>();
         rutineData=new RutinaData();
         cardsCompent=new ArrayList<>();
+        rutinaSaved= new ArrayList<>();
+        incompatibles=new ArrayList<>();
 
         CargarRutinas();
     }
@@ -87,15 +92,26 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     public void cargarCardCompenent(){
         for (RutineModel rutina: rutinas){
             int imgResId = getResources().getIdentifier(rutina.getImage(), "drawable", getPackageName());
-            cardRutine=new CardRutine(rutina.getName(),rutina.getType(),imgResId);
+            cardRutine=new CardRutine(rutina.getName(),rutina.getType(),imgResId,rutina.getId());
             cardsCompent.add(cardRutine);
         }
-        cargarTarjetas(cardsCompent);
+        cargarTarjetas();
     }
 
-    private void cargarTarjetas(ArrayList<CardRutine> cardsCompent) {
+    private void cargarTarjetas() {
         tableLayout.removeAllViews();
 
+        if (rutinaSaved.size()>0) {
+            for (int i = 0; i < cardsCompent.size(); i++) {
+                System.out.println("incompatibles"+incompatibles);
+                System.out.println("cardsCompent.get(i).getId()"+cardsCompent.get(i).getId());
+
+                if (incompatibles != null && incompatibles.contains(cardsCompent.get(i).getId())) {
+                    cardsCompent.remove(i);
+                    i--;
+                }
+            }
+        }
         for (int i = 0; i < cardsCompent.size(); i += 2) {
             TableRow row = new TableRow(this);
 
@@ -133,6 +149,16 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         card.setOnClickListener(v -> {
             Toast.makeText(this, "Rutina: " + cardsCompent.getTitulo(), Toast.LENGTH_SHORT).show();
             // Aquí podrías cargar otro layout dinámicamente o abrir un detalle
+            for(RutineModel rutina: rutinas){
+                if(rutina.getId() == cardsCompent.getId()){
+                    rutinaSaved.add(rutina);
+                    incompatibles.addAll(rutina.getRutineIncompatible());
+                    incompatibles.add(rutina.getId());
+                    System.out.println("rutina guardada"+rutinaSaved.toString());
+                    break;
+                }
+            }
+            cargarTarjetas();
         });
 
         return card;
