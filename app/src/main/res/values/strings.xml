@@ -24,5 +24,10 @@
     <string name="diaTextSelected">Dia </string>
     <string name="saveSelectedRutine">Guardar Selección</string>
     <string name="dayRestChoice">Restantes por escoger:</string>
+    <string-array name="opciones_array">
+        <item>Tipo de Rutina</item>
+        <item>Full body</item>
+        <item>Push Pull</item>
+    </string-array>
 
 </resources>

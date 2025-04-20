@@ -7,6 +7,9 @@ import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.interfaces.RutineUserCallback;
 import com.powerroutine.model.UserModel;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,13 +41,18 @@ public class RutinaData {
         });
 
     }
-    public void saverRutineUser(RutineListDtd rutineListDtd, final RutineUserCallback callback){
-        Call<String> rutineResponse=apiService.setRutinesForUser(rutineListDtd);
-        rutineResponse.enqueue(new Callback<String>() {
+    public void saveRutineUser(RutineListDtd rutineListDtd, final RutineUserCallback callback){
+        Call<ResponseBody> rutineResponse=apiService.setRutinesForUser(rutineListDtd);
+        rutineResponse.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    String responseBody = response.body();
+                    String responseBody= null;
+                    try {
+                        responseBody = response.body().string();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     if (responseBody != null) {
                         callback.onSuccess(responseBody);
                     } else {
@@ -56,8 +64,19 @@ public class RutinaData {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                callback.onFailure("Error: " + t.getMessage());
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (t instanceof retrofit2.HttpException) {
+                    retrofit2.HttpException httpException = (retrofit2.HttpException) t;
+                    try {
+                        // Recuperar el cuerpo de la respuesta de error
+                        String errorBody = httpException.response().errorBody().string();
+                        callback.onFailure(errorBody);
+                    } catch (Exception e) {
+                        callback.onFailure("Error desconocido: " + e.getMessage());
+                    }
+                } else {
+                    callback.onFailure("Error: " + t.getMessage());
+                }
             }
         });
     }

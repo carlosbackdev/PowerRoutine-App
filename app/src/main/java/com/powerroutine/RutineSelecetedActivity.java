@@ -3,8 +3,10 @@ package com.powerroutine;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,7 +22,9 @@ import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutinaDtd;
 import com.powerroutine.dtd.RutineListDtd;
+import com.powerroutine.dtd.TypeRutineDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
+import com.powerroutine.interfaces.RutineUserCallback;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
@@ -43,6 +47,8 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private ArrayList<RutineModel> rutinaSaved;
     private List<Integer> incompatibles;
     private RutineListDtd saveRutineList=new RutineListDtd();
+    private TypeRutineDtd typeRutineDtd= new TypeRutineDtd();
+    private Spinner spnTypeRutine;
 
 
     @Override
@@ -67,6 +73,10 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         dayRestInt=user.getDaysWeek();
         dayString = txtDay.getText().toString();
         dayRest= txtDayRestChoice.getText().toString();
+        spnTypeRutine=findViewById(R.id.spnTypeRutine);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, typeRutineDtd.getTypeRutine());
+
+        spnTypeRutine.setAdapter(adapter);
 
         dayMore();
         CargarRutinas();
@@ -78,9 +88,6 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(RutineListDtd rutineListDtd) {
                     rutinas=rutineListDtd.getRutinas();
-                    mostrarToast(rutineListDtd.getRespuesta());
-
-                    // cargarTarjetas(rutineListDtd.getRutinas());
                     cargarCardCompenent();
                 }
 
@@ -172,10 +179,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         params.setMargins(margin, margin, margin, margin);
         card.setLayoutParams(params);
 
-        // Puedes añadir un onClickListener aquí si quieres que abra otra vista
         card.setOnClickListener(v -> {
-            Toast.makeText(this, "Rutina: " + cardsCompent.getTitulo(), Toast.LENGTH_SHORT).show();
-            // Aquí podrías cargar otro layout dinámicamente o abrir un detalle
             for(RutineModel rutina: rutinas){
                 if(rutina.getId() == cardsCompent.getId()){
                     rutinaSaved.add(rutina);
@@ -198,7 +202,6 @@ public class RutineSelecetedActivity extends AppCompatActivity {
             day++;
             txtDay.setText(dayString+" "+day);
         }else {
-            mostrarToast("Guarda las rutinas selecionadas ");
             btnSave.setBackgroundResource(R.drawable.button_background_orange);
             txtDay.setText("Semana completa");
         }
@@ -228,9 +231,22 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     }
     public void saveSelected(View v){
         if(rutinaSaved.size() == user.getDaysWeek()){
-            mostrarToast("siii");
             saveRutineList.setUser(user);
             saveRutineList.setRutinas(rutinaSaved);
+            System.out.println(saveRutineList.toString());
+            rutineData.saveRutineUser(saveRutineList, new RutineUserCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    System.out.println("respuesta:"+response);
+                    mostrarToast(response);
+
+                }
+
+                @Override
+                public void onFailure(String error) {
+                    System.out.println("Error al guardar rutinas: "+error);
+                }
+            });
 
 
         }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class RutineListDtd {
     private ArrayList<RutineModel> rutinas;
     private String respuesta;
-    private UserModel user;
+    private UserModel userModel;
 
     public RutineListDtd(ArrayList<RutineModel> rutinas, String respuesta) {
         this.rutinas = rutinas;
@@ -16,15 +16,15 @@ public class RutineListDtd {
     }
     public RutineListDtd(ArrayList<RutineModel> rutinas, UserModel user) {
         this.rutinas = rutinas;
-        this.user = user;
+        this.userModel = user;
     }
 
     public UserModel getUser() {
-        return user;
+        return userModel;
     }
 
     public void setUser(UserModel user) {
-        this.user = user;
+        this.userModel = user;
     }
 
     public RutineListDtd() {
@@ -52,6 +52,7 @@ public class RutineListDtd {
         return "RutineListDtd{" +
                 "rutinas=" + rutinas +
                 ", respuesta='" + respuesta + '\'' +
+                ", user=" + userModel +
                 '}';
     }
 }
