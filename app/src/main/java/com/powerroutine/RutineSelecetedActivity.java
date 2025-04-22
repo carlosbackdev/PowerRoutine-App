@@ -3,6 +3,7 @@ package com.powerroutine;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,8 +48,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private ArrayList<RutineModel> rutinaSaved;
     private List<Integer> incompatibles;
     private RutineListDtd saveRutineList=new RutineListDtd();
-    private TypeRutineDtd typeRutineDtd= new TypeRutineDtd();
+    private TypeRutineDtd typeRutineDtd;
     private Spinner spnTypeRutine;
+    private String typeRutine;
 
 
     @Override
@@ -73,10 +75,27 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         dayRestInt=user.getDaysWeek();
         dayString = txtDay.getText().toString();
         dayRest= txtDayRestChoice.getText().toString();
+        this.typeRutineDtd= new TypeRutineDtd(user.getDaysWeek());
         spnTypeRutine=findViewById(R.id.spnTypeRutine);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, typeRutineDtd.getTypeRutine());
-
         spnTypeRutine.setAdapter(adapter);
+        typeRutine=typeRutineDtd.getTypeRutine().get(0);
+
+        // Configurar el listener para el Spinner
+        spnTypeRutine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedType = parent.getItemAtPosition(position).toString();
+                typeRutine = selectedType;
+                reset(null);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         dayMore();
         CargarRutinas();
@@ -104,9 +123,11 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     }
     public void cargarCardCompenent(){
         for (RutineModel rutina: rutinas){
-            int imgResId = getResources().getIdentifier(rutina.getImage(), "drawable", getPackageName());
-            cardRutine=new CardRutine(rutina.getName(),rutina.getType(),imgResId,rutina.getId());
-            cardsCompent.add(cardRutine);
+            if(rutina.filtrarRutinaNombre(typeRutine)){
+                int imgResId = getResources().getIdentifier(rutina.getImage().toLowerCase(), "drawable", getPackageName());
+                cardRutine=new CardRutine(rutina.getName(),rutina.getType(),imgResId,rutina.getId());
+                cardsCompent.add(cardRutine);
+            }
         }
         cargarTarjetas();
     }
@@ -203,7 +224,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
             txtDay.setText(dayString+" "+day);
         }else {
             btnSave.setBackgroundResource(R.drawable.button_background_orange);
-            txtDay.setText("Semana completa");
+            txtDay.setText("Completo");
+            cardsCompent.clear();
+
         }
 
         if(dayRestInt > 0){

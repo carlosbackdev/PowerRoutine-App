@@ -96,6 +96,13 @@ public class RutineModel {
         this.dayweek = dayweek;
     }
 
+    public boolean filtrarRutinaNombre(String nombre) {
+        if(nombre.equalsIgnoreCase(this.name)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "RutineModel{" +
