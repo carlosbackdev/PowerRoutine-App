@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RutineModel {
     private int id;
+    private long idUser;
+    private int idRutine;
     private String name;
     private List<Integer> idBody;
     private List<Integer> idEjercices;
@@ -14,6 +16,22 @@ public class RutineModel {
     private List<Integer> complement;
     private List<Integer> muscle_principal;
     private String dayweek;
+
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public int getIdRutine() {
+        return idRutine;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setIdRutine(int idRutine) {
+        this.idRutine = idRutine;
+    }
 
     // Getters y Setters
     public int getId() {

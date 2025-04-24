@@ -41,6 +41,30 @@ public class RutinaData {
         });
 
     }
+
+    public void getRutinesForUser(UserModel user, final RutineListCallBack callback){
+        Call<RutineListDtd> rutineResponse=apiService.getRutinesForUser(user);
+        rutineResponse.enqueue(new Callback<RutineListDtd>() {
+            @Override
+            public void onResponse(Call<RutineListDtd> call, Response<RutineListDtd> response) {
+                if (response.isSuccessful()) {
+                    RutineListDtd rutineListResponse = response.body();
+                    if (rutineListResponse.getRutinas() != null) {
+                        callback.onSuccess(rutineListResponse);
+                    } else {
+                        callback.onFailure(rutineListResponse.getRespuesta());
+                    }
+                } else {
+                    callback.onFailure("Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RutineListDtd> call, Throwable t) {
+                callback.onFailure("Error: " + t.getMessage());
+            }
+        });    }
+
     public void saveRutineUser(RutineListDtd rutineListDtd, final RutineUserCallback callback){
         Call<ResponseBody> rutineResponse=apiService.setRutinesForUser(rutineListDtd);
         rutineResponse.enqueue(new Callback<ResponseBody>() {

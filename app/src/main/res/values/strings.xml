@@ -24,6 +24,7 @@
     <string name="diaTextSelected">Dia </string>
     <string name="saveSelectedRutine">Guardar Selección</string>
     <string name="dayRestChoice">Restantes por escoger:</string>
+    <string name="ejercicesRestChoice">Ejercicios por escoger:</string>
     <string name="ejercicesSelectedTitle"><u>Seleciona Ejercicios</u></string>
     <string name="rutinaSelected">Rutina</string>
 

@@ -23,4 +23,7 @@ public interface ApiService {
 
     @POST("rutine/saveRutineUser")
     Call<ResponseBody> setRutinesForUser(@Body RutineListDtd rutineListDtd);
+
+    @POST("rutine/getRutineUser")
+    Call<RutineListDtd> getRutinesForUser(@Body UserModel user);
 }

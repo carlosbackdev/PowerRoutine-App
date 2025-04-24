@@ -1,5 +1,6 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +16,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.controllerData.RutinaData;
-import com.powerroutine.dtd.RutinaDtd;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.dtd.TypeRutineDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
@@ -58,7 +55,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rutine_seleceted);
 
-        this.txtDay = findViewById(R.id.txtDay);
+        this.txtDay = findViewById(R.id.txtEjerciceTitle);
         this.user = (UserModel) getIntent().getSerializableExtra("user");
         this.btnSave=findViewById(R.id.btnSave);
         this.txtDayRestChoice= findViewById(R.id.txtDayRestChoice);
@@ -111,13 +108,14 @@ public class RutineSelecetedActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(String error) {
-                    System.out.println("Error al cargar rutinas: "+error);
-                    Toast.makeText(RutineSelecetedActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                    System.out.println("Error al cargar rutinas:"+error);
+                    mostrarToast("Error al cargar rutinas:");
                 }
             });
 
         }catch (Exception e){
             System.out.println("Error al cargar rutinas: "+e.getMessage());
+            mostrarToast("Error al cargar rutinas:");
         }
     }
     public void cargarCardCompenent(){
@@ -234,6 +232,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
             });
 
 
+            Intent intent = new Intent(this, EjercicesSelectedActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         }
     }
 }
