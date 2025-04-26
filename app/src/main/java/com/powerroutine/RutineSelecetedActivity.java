@@ -60,7 +60,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         this.btnSave=findViewById(R.id.btnSave);
         this.txtDayRestChoice= findViewById(R.id.txtDayRestChoice);
 
-        tableLayout=findViewById(R.id.tablaRutinas);
+        tableLayout=findViewById(R.id.tablaEjercicios);
         inflater=LayoutInflater.from(this);
         rutinas=new ArrayList<>();
         rutineData=new RutinaData();

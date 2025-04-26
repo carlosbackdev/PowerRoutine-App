@@ -7,6 +7,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.powerroutine.R;
+import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.RutineModel;
 
 import java.util.ArrayList;
@@ -36,6 +37,17 @@ public class CardCreation {
 
             }
 
+        }
+
+        return cardsCompent;
+    }
+
+    public ArrayList<CardRutine> createCardsEjercices(Context context, ArrayList<EjerciceModel> ejercices) {
+
+        for (EjerciceModel ejercice: ejercices){
+                int imgResId = context.getResources().getIdentifier(ejercice.getImage().toLowerCase(), "drawable", context.getPackageName());
+                cardRutine=new CardRutine(ejercice.getName(),ejercice.getDescripcion(),imgResId,ejercice.getId());
+                cardsCompent.add(cardRutine);
         }
 
         return cardsCompent;

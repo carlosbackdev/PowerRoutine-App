@@ -1,5 +1,6 @@
 package com.powerroutine.config;
 
+import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.model.UserModel;
@@ -26,4 +27,7 @@ public interface ApiService {
 
     @POST("rutine/getRutineUser")
     Call<RutineListDtd> getRutinesForUser(@Body UserModel user);
+
+    @POST("ejercice/getEjercices")
+    Call<EjerciceDTD> getEjercices(@Body RutineListDtd rutineListDtd);
 }
