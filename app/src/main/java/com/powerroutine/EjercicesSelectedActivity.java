@@ -40,16 +40,13 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
     private Spinner spnTypeRutine;
     private TextView titleRutine,txtChoiceRest;
     private String titleRutineString,restChoice;
-    private ArrayList<EjerciceModel> ejercices;
-    private ArrayList<EjerciceModel> ejercicesOfRutine;
+    private ArrayList<EjerciceModel> ejercices,ejercicesOfRutine,ejeciciosSelected;
     private ArrayList<CardRutine> cardsCompent= new ArrayList<>();
     private TableLayout tableLayout;
-    private ArrayList<EjerciceModel> ejeciciosSelected;
     private LayoutInflater inflater;
     private boolean isFirstSelection = true;
-    private int ejercicesMax;
+    private int ejercicesMax,positionRutine;
     private Button btnSave;
-    private int positionRutine;
 
     private ArrayList<String> typeRutine=new ArrayList<>();
 
@@ -81,9 +78,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
 
 
         ejerciciesMaxChoice();
-
-
-        //cargar los ejercicios del usuario para luego hacer el spinner por cada rutina guardada
         CargarRutinas();
         System.out.println(rutinas.toString());
 
@@ -98,6 +92,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                     rutinas=rutineListDtd.getRutinas();
                     System.out.println("rutinas encontradas"+rutinas.toString());
                     int contador=1;
+                    Collections.shuffle(rutinas);
                     for(RutineModel rutina: rutinas){
                         typeRutine.add("dia " +contador+" "+rutina.getType());
                         contador++;
@@ -181,7 +176,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 }
             }
         }
-        Collections.shuffle(ejercicesOfRutine);
         cargarCardCompenent();
     }
 
@@ -300,6 +294,16 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
     public void saveSelected(View v){
         //guardar la rutina seleccionada con la posicion de la rutina y los ejercicios seleccionados
         //para hacer un update en los ejercicios de la rutina del usuario
+        RutineModel rutineUpdate=rutinas.get(positionRutine);
+        List<Integer> ejercicesUpdate=new ArrayList<>();
+        for(EjerciceModel ejercice: ejeciciosSelected){
+            ejercicesUpdate.add(ejercice.getId());
+        }
+        rutineUpdate.setIdEjercices(ejercicesUpdate);
+        System.out.println("rutina actualizada"+rutineUpdate.toString());
+        //guardar la rutina actualizada
+
+
 
         typeRutine.remove(positionRutine);
         spinerAdapter();

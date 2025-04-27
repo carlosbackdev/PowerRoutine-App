@@ -3,6 +3,7 @@ package com.powerroutine.config;
 import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.dtd.RutineListDtd;
+import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
 import okhttp3.ResponseBody;
@@ -30,4 +31,7 @@ public interface ApiService {
 
     @POST("ejercice/getEjercices")
     Call<EjerciceDTD> getEjercices(@Body RutineListDtd rutineListDtd);
+
+    @POST("rutine/updateRutineUser")
+    Call<ResponseBody> updateRutineUser(@Body RutineModel rutineModel);
 }
