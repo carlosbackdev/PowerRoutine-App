@@ -5,6 +5,9 @@ import com.powerroutine.config.RetrofitClient;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.interfaces.RutineUserCallback;
+import com.powerroutine.interfaces.UpdateRutineUserCallBack;
+import com.powerroutine.interfaces.UpdateUserCallBack;
+import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
 import java.io.IOException;
@@ -104,4 +107,51 @@ public class RutinaData {
             }
         });
     }
+
+    public void updateRutineUser(RutineModel rutineUser, final UpdateRutineUserCallBack callback) {
+        Call<ResponseBody> response = apiService.updateRutineUser(rutineUser);
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String responseBody = response.body().string();
+                        callback.onSuccess(responseBody);
+                    } catch (IOException e) {
+                        callback.onFailure("Error al procesar la respuesta: " + e.getMessage());
+                    }
+                } else {
+                    String errorMessage = "Error: " + response.code();
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMessage = response.errorBody().string();
+                        } catch (IOException e) {
+                            errorMessage = "Error desconocido: " + e.getMessage();
+                        }
+                    }
+                    callback.onFailure(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (t instanceof retrofit2.HttpException) {
+                    retrofit2.HttpException httpException = (retrofit2.HttpException) t;
+                    if (httpException.response() != null && httpException.response().errorBody() != null) {
+                        try {
+                            String errorBody = httpException.response().errorBody().string();
+                            callback.onFailure(errorBody);
+                        } catch (IOException e) {
+                            callback.onFailure("Error desconocido: " + e.getMessage());
+                        }
+                    } else {
+                        callback.onFailure("Error HTTP desconocido.");
+                    }
+                } else {
+                    callback.onFailure("Error: " + t.getMessage());
+                }
+            }
+        });
+    }
+
 }

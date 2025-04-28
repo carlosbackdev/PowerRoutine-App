@@ -24,6 +24,7 @@ import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.EjerciceCallBack;
 import com.powerroutine.interfaces.RutineListCallBack;
+import com.powerroutine.interfaces.UpdateRutineUserCallBack;
 import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
@@ -300,13 +301,32 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
             ejercicesUpdate.add(ejercice.getId());
         }
         rutineUpdate.setIdEjercices(ejercicesUpdate);
-        System.out.println("rutina actualizada"+rutineUpdate.toString());
+        System.out.println("rutina a actualizar"+rutineUpdate.toString());
         //guardar la rutina actualizada
 
+        try{
+            rutineData.updateRutineUser(rutineUpdate,new UpdateRutineUserCallBack() {
+                @Override
+                public void onSuccess(String response) {
 
+                    System.out.println("respuesta"+response);
+                    mostrarToast(response);
+                    typeRutine.remove(positionRutine);
+                    rutinas.remove(positionRutine);
+                    spinerAdapter();
+                    System.out.println("ejercicios selcecionads"+ejeciciosSelected);
+                }
+                @Override
+                public void onFailure(String error) {
+                    System.out.println("Error al cargar ejercicios: "+error);
+                    mostrarToast("Error al cargar ejercicios:");
+                }
+            });
 
-        typeRutine.remove(positionRutine);
-        spinerAdapter();
+        }catch (Exception e){
+            System.out.println("Error al cargar rutinas: "+e.getMessage());
+            mostrarToast("Error al cargar rutinas:");
+        }
 
     }
 
@@ -326,6 +346,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 //los ejercicios se cargan todos luego se filtar por el id aqui
                 positionRutine=position;
                 limpiar();
+                System.out.println("rutinas"+rutinas.toString());
                 loadEjercices(rutinas.get(position).getIdEjercices(), rutinas.get(position));
             }
 
