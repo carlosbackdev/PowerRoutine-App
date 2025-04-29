@@ -27,6 +27,7 @@
     <string name="ejercicesRestChoice">Ejercicios por escoger:</string>
     <string name="ejercicesSelectedTitle"><u>Seleciona Ejercicios</u></string>
     <string name="rutinaSelected">Rutina</string>
+    <string name="homeTitle">Tus Rutinas</string>
 
 
 </resources>

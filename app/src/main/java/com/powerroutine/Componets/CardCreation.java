@@ -77,7 +77,7 @@ public class CardCreation {
             TextView emptyMessage = new TextView(context);
             emptyMessage.setTextAppearance(context, R.style.TextViewHeaderBlackStyle);
             emptyMessage.setTextColor(context.getResources().getColor(R.color.text_grey));
-            emptyMessage.setText("No hay rutinas disponibles.");
+            emptyMessage.setText("No hay rutinas o ejercicios disponibles.");
             emptyMessage.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             emptyMessage.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,

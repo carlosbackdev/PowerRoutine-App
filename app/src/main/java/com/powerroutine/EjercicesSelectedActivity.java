@@ -161,9 +161,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
 
     private void loadEjercices(List<Integer> ejercicesId, RutineModel rutine) {
 
-        for(EjerciceModel ejercice: ejercices){
-            System.out.println("ejercices"+ejercice.getId());
-        };
         if (ejercices == null || ejercicesId == null || rutine == null) {
             System.out.println("Error: Datos no inicializados (ejercices, ejercicesId o rutine son null).");
             System.out.println("ejercices: "+ejercices);
@@ -308,13 +305,15 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
             rutineData.updateRutineUser(rutineUpdate,new UpdateRutineUserCallBack() {
                 @Override
                 public void onSuccess(String response) {
-
                     System.out.println("respuesta"+response);
                     mostrarToast(response);
                     typeRutine.remove(positionRutine);
                     rutinas.remove(positionRutine);
                     spinerAdapter();
                     System.out.println("ejercicios selcecionads"+ejeciciosSelected);
+                    if(rutinas.isEmpty()){
+                        mostrarToast("cambio de pantalla");
+                    }
                 }
                 @Override
                 public void onFailure(String error) {
@@ -332,7 +331,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
 
     public void spinerAdapter(){
         //metodo para cargar la rutina selecionada
-        System.out.println("rutinas tipo"+typeRutine.toString());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(EjercicesSelectedActivity.this, android.R.layout.simple_selectable_list_item, typeRutine);
         spnTypeRutine.setAdapter(adapter);
         spnTypeRutine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -346,7 +344,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 //los ejercicios se cargan todos luego se filtar por el id aqui
                 positionRutine=position;
                 limpiar();
-                System.out.println("rutinas"+rutinas.toString());
                 loadEjercices(rutinas.get(position).getIdEjercices(), rutinas.get(position));
             }
 
