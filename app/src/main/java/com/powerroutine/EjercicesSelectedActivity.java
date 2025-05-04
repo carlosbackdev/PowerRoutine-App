@@ -1,5 +1,6 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
     private Button btnSave;
 
     private ArrayList<String> typeRutine=new ArrayList<>();
+    private Intent homeActivity;
 
 
 
@@ -76,6 +78,8 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
         ejercicesOfRutine=new ArrayList<>();
         ejercices= new ArrayList<>();
         ejeciciosSelected= new ArrayList<>();
+
+        homeActivity = new Intent(this, HomeActivity.class);
 
 
         ejerciciesMaxChoice();
@@ -204,7 +208,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
             View card = inflater.inflate(R.layout.rutina_card, null);
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
-            TextView descripcion = card.findViewById(R.id.txtDescCard);
+            TextView descripcion = card.findViewById(R.id.Layout);
             ImageView imagen = card.findViewById(R.id.imgRutina);
 
             titulo.setText(cardComponent.getTitulo());
@@ -312,7 +316,9 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                     spinerAdapter();
                     System.out.println("ejercicios selcecionads"+ejeciciosSelected);
                     if(rutinas.isEmpty()){
-                        mostrarToast("cambio de pantalla");
+                        homeActivity.putExtra("user", user);
+                        startActivity(homeActivity);
+                        finish();
                     }
                 }
                 @Override

@@ -16,6 +16,15 @@ public class RutineModel {
     private List<Integer> complement;
     private List<Integer> muscle_principal;
     private String dayweek;
+    private boolean completed;
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 
     public long getIdUser() {
         return idUser;

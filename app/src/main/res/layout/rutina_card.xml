@@ -46,7 +46,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/txtDescCard"
+            android:id="@+id/Layout"
             style="@style/TextViewBaseStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

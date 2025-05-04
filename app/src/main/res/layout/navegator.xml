@@ -6,65 +6,69 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="78dp"
-        android:layout_height="279dp"
+        android:layout_width="306dp"
+        android:layout_height="98dp"
         android:background="@drawable/button_background_orange">
 
         <LinearLayout
-            android:layout_width="55dp"
-            android:layout_height="254dp"
-            android:orientation="vertical"
+            android:layout_width="246dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="11dp" />
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btnPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:onClick="perfil"
                 android:scaleType="fitCenter"
                 tools:srcCompat="@drawable/perfil" />
 
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/btnCalendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:onClick="calendar"
-                android:scaleType="fitCenter"
+                android:scaleType="matrix"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:srcCompat="@drawable/calendario" />
 
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/btnHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#00FFFFFF"
                 android:onClick="home"
-                android:scaleType="fitCenter"
+                android:scaleType="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:srcCompat="@drawable/rutineicon" />
 
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="11dp" />
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginValidate form;
     private UserData userData;
     private LoginDtd loginDtd;
-    private Intent opcionUserActivity, rutineSelectedActivity;
+    private Intent opcionUserActivity, rutineSelectedActivity,homeActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         this.user= new UserModel();
         opcionUserActivity = new Intent(this, UserOpcionActivity.class);
         rutineSelectedActivity = new Intent(LoginActivity.this, RutineSelecetedActivity.class);
+        homeActivity = new Intent(LoginActivity.this, HomeActivity.class);
 
 
 
@@ -80,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
 
                         }else{
-                            rutineSelectedActivity.putExtra("user", loginDtd.getUserModel());
-                            startActivity(rutineSelectedActivity);
+                            homeActivity.putExtra("user", loginDtd.getUserModel());
+                            startActivity(homeActivity);
                             finish();
                         }
                     }

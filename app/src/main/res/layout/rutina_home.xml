@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -55,7 +56,16 @@
                 tools:layout_editor_absoluteY="165dp">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txtDescCard"
+                    style="@style/TextViewBaseStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/txtCompleteCard"
+                    style="@style/TextViewBaseStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="completada"

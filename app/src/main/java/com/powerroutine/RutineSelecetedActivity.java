@@ -144,7 +144,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
             View card = inflater.inflate(R.layout.rutina_card, null);
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
-            TextView descripcion = card.findViewById(R.id.txtDescCard);
+            TextView descripcion = card.findViewById(R.id.Layout);
             ImageView imagen = card.findViewById(R.id.imgRutina);
 
             titulo.setText(cardComponent.getTitulo());
