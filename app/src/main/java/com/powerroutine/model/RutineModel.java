@@ -1,9 +1,10 @@
 package com.powerroutine.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RutineModel {
+public class RutineModel implements Serializable {
     private int id;
     private long idUser;
     private int idRutine;
@@ -134,6 +135,8 @@ public class RutineModel {
     public String toString() {
         return "RutineModel{" +
                 "id=" + id +
+                ", idUser=" + idUser +
+                ", idRutine=" + idRutine +
                 ", name='" + name + '\'' +
                 ", idBody=" + idBody +
                 ", idEjercices=" + idEjercices +
@@ -143,6 +146,7 @@ public class RutineModel {
                 ", complement=" + complement +
                 ", muscle_principal=" + muscle_principal +
                 ", dayweek='" + dayweek + '\'' +
+                ", completed=" + completed +
                 '}';
     }
 }

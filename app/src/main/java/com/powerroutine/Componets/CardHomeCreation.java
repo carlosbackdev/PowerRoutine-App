@@ -32,7 +32,7 @@ public class CardHomeCreation {
         for (RutineModel rutina: rutinas){
                 int imgResId = context.getResources().getIdentifier(rutina.getImage().toLowerCase(), "drawable", context.getPackageName());
                 //cambiar true por completadoget de la base de datos
-                cardRutine=new CardHome(rutina.getName(),rutina.getType(),imgResId,true,rutina.getId());
+                cardRutine=new CardHome(rutina.getName(),rutina.getType(),imgResId,rutina.isCompleted(),rutina.getId());
                 cardsCompent.add(cardRutine);
         }
 
@@ -42,20 +42,10 @@ public class CardHomeCreation {
     public TableLayout createLayoutCards(Context context,ArrayList<View> cardsView){
         tableLayout.removeAllViews();
 
-        for (int i = 0; i < cardsView.size(); i += 2) {
+        for (int i = 0; i < cardsView.size(); i++) {
             TableRow row = new TableRow(context);
 
             row.addView(cardsView.get(i));
-
-            // Carga la segunda tarjeta si existe
-            if (i + 1 < cardsView.size()) {
-                row.addView(cardsView.get(i+1));
-            } else {
-                // Si es impar, rellena con un espacio en blanco
-                View emptyView = new View(context);
-                emptyView.setLayoutParams(new TableRow.LayoutParams(0, 0, 1));
-                row.addView(emptyView);
-            }
 
             tableLayout.addView(row);
         }

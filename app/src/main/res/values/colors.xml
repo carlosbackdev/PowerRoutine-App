@@ -6,6 +6,7 @@
     <color name="text_grey">#B0BEC5</color>
     <color name="main_background">#121212</color>
     <color name="primary_color">#FF6F00</color>
+    <color name="primary_color_intense">#ED6500</color>
     <color name="secundary_color">#FFC107</color>
     <color name="border_color">#37474F</color>
     <color name="green">#4CAF50</color>

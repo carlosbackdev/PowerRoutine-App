@@ -62,6 +62,15 @@ public class CardHome {
         return completado;
     }
 
+    public String getCompletadoText(){
+        if(completado){
+            return "Completado";
+        }else{
+            return "No completado";
+        }
+    }
+
+
     public int getId() {
         return id;
     }

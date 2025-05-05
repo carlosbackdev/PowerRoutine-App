@@ -1,5 +1,6 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<CardHome> cardsCompent;
     private LayoutInflater inflater;
 
+    private Intent rutineDetailsActivity;
 
 
 
@@ -48,18 +50,21 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ImageButton btnHome = findViewById(R.id.btnHome);
-        ImageView btnPerfil = findViewById(R.id.btnPerfil);
+        ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
 
         tableLayout=findViewById(R.id.tablaEjercicios);
         inflater=LayoutInflater.from(this);
 
 
-        new Navegator(btnHome,btnPerfil,btnCalendar,this,"home");
+        user = (UserModel) getIntent().getSerializableExtra("user");
+
+        new Navegator(btnHome,btnPerfil,btnCalendar,this,"home",user);
         rutineData = new RutinaData();
         cardsCompent=new ArrayList<>();
 
-        user = (UserModel) getIntent().getSerializableExtra("user");
+        rutineDetailsActivity=new Intent(this,RutineDetailsActivity.class);
+
 
         CargarRutinas();
 
@@ -99,15 +104,22 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<View> crearCard(ArrayList<View> cardView ) {
         for (CardHome cardComponent : cardsCompent) {
-            View card = inflater.inflate(R.layout.rutina_card, null);
+            View card = inflater.inflate(R.layout.rutina_home, null);
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
-            TextView descripcion = card.findViewById(R.id.Layout);
+            TextView descripcion = card.findViewById(R.id.txtDescCard);
             ImageView imagen = card.findViewById(R.id.imgRutina);
+            TextView completed=card.findViewById(R.id.txtCompleteCard);
 
             titulo.setText(cardComponent.getTitulo());
             descripcion.setText(cardComponent.getDescripcion());
             imagen.setImageResource(cardComponent.getImagenResId());
+            completed.setText(cardComponent.getCompletadoText());
+            if(!cardComponent.getCompletado()){
+                completed.setTextColor(getResources().getColor(R.color.secundary_color));
+            }else{
+                completed.setTextColor(getResources().getColor(R.color.text_grey));
+            }
 
             // Configurar márgenes
             TableRow.LayoutParams params = new TableRow.LayoutParams(
@@ -121,7 +133,9 @@ public class HomeActivity extends AppCompatActivity {
             card.setOnClickListener(v -> {
                 for(RutineModel rutina: rutinas){
                     if(rutina.getId() == cardComponent.getId()){
-                        mostrarToast("rutina: "+rutina.getType());
+                        rutineDetailsActivity.putExtra("rutine",rutina);
+                        rutineDetailsActivity.putExtra("user",user);
+                        startActivity(rutineDetailsActivity);
                         break;
                     }
                 }
