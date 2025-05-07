@@ -55,6 +55,8 @@ public class RutineDetailsActivity extends AppCompatActivity {
 
 
 
+
+
     }
 
     public void mostrarToast(String mensaje) {

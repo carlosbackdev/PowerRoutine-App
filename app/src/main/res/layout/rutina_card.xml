@@ -18,7 +18,7 @@
             android:layout_height="233dp">
 
             <ImageView
-                android:id="@+id/imgRutina"
+                android:id="@+id/imgEjercice"
                 style="@style/TextViewSecondaryStyle"
                 android:layout_width="208dp"
                 android:layout_height="301dp"

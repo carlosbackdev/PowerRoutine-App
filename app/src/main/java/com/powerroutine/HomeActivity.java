@@ -13,16 +13,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
-import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Componets.Navegator;
-import com.powerroutine.Static.BodyStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
@@ -32,7 +26,6 @@ import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class HomeActivity extends AppCompatActivity {
     private RutinaData rutineData;
@@ -111,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
             TextView descripcion = card.findViewById(R.id.txtDescCard);
-            ImageView imagen = card.findViewById(R.id.imgRutina);
+            ImageView imagen = card.findViewById(R.id.imgEjercice);
             TextView completed=card.findViewById(R.id.txtCompleteCard);
 
             titulo.setText(cardComponent.getTitulo());

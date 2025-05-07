@@ -22,7 +22,6 @@ import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
-import com.powerroutine.dtd.TypeRutineDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.interfaces.RutineUserCallback;
 import com.powerroutine.model.RutineModel;
@@ -146,7 +145,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
             TextView descripcion = card.findViewById(R.id.Layout);
-            ImageView imagen = card.findViewById(R.id.imgRutina);
+            ImageView imagen = card.findViewById(R.id.imgEjercice);
 
             titulo.setText(cardComponent.getTitulo());
             descripcion.setText(cardComponent.getDescripcion());

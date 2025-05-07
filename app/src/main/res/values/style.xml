@@ -7,6 +7,13 @@
         <item name="android:fontFamily">@font/baloo_2</item>
     </style>
 
+    <style name="TextViewBaseStyleSmall">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">@font/baloo_2</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="TextViewLinkStyle">
         <item name="android:textColor">@color/yellow</item>
         <item name="android:textSize">18sp</item>

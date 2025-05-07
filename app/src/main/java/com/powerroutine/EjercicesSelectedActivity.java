@@ -23,9 +23,7 @@ import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.EjerciceData;
 import com.powerroutine.controllerData.RutinaData;
-import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.RutineListDtd;
-import com.powerroutine.interfaces.EjerciceCallBack;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.interfaces.UpdateRutineUserCallBack;
 import com.powerroutine.model.EjerciceModel;
@@ -178,7 +176,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
 
             TextView titulo = card.findViewById(R.id.txtTituloCard);
             TextView descripcion = card.findViewById(R.id.Layout);
-            ImageView imagen = card.findViewById(R.id.imgRutina);
+            ImageView imagen = card.findViewById(R.id.imgEjercice);
 
             titulo.setText(cardComponent.getTitulo());
             descripcion.setText(cardComponent.getDescripcion());
