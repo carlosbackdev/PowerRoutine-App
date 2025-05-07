@@ -80,20 +80,4 @@ public class UserModel{
                 '}';
     }
 
-    public int getRepeticiones(){
-        if(idObjetive==1){
-            return 15;
-        } else if (idObjetive==2) {
-            return 12;
-        }
-        return 10;
-    }
-    public int getSeries(){
-        if(idLevelRange==1){
-            return 3;
-        } else if (idLevelRange==2) {
-            return 4;
-        }
-        return 5;
-    }
 }

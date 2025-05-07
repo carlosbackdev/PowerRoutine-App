@@ -22,6 +22,7 @@ import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
+import com.powerroutine.dtd.TypeRutineDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.interfaces.RutineUserCallback;
 import com.powerroutine.model.RutineModel;

@@ -2,8 +2,10 @@ package com.powerroutine.config;
 
 import com.powerroutine.dtd.BodyDTD;
 import com.powerroutine.dtd.EjerciceDTD;
+import com.powerroutine.dtd.LevelDTD;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.dtd.MuscleDTD;
+import com.powerroutine.dtd.ObjetiveDTD;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
@@ -50,4 +52,10 @@ public interface ApiService {
 
     @GET("ejercice/getAllEjercices")
     Call<EjerciceDTD> getAllEjercices();
-}
+
+    @GET("objetive/getAllObjetives")
+    Call <ObjetiveDTD> getAllObjetives();
+
+    @GET("level/getAllLevels")
+    Call <LevelDTD> getAllLevels();
+    }

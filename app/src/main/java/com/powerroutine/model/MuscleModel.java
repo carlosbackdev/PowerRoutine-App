@@ -31,7 +31,7 @@ public class MuscleModel {
 
     @Override
     public String toString() {
-        return "BodyModel{" +
+        return "MuscleModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +

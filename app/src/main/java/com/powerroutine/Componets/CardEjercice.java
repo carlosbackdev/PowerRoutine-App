@@ -12,11 +12,11 @@ public class CardEjercice {
     private int imagenResId;
     private int id;
 
-    private int series;
-    private int repeticiones;
+    private String series;
+    private String repeticiones;
     private String muscle;
 
-    public CardEjercice(String titulo, int idMuscle, String descripcion, int imagenResId, int id, int series, int repeticiones) {
+    public CardEjercice(String titulo, int idMuscle, String descripcion, int imagenResId, int id, String series, String repeticiones) {
         this.titulo = titulo;
         this.idMuscle = idMuscle;
         this.descripcion = descripcion;
@@ -43,12 +43,13 @@ public class CardEjercice {
     public String toString() {
         return "CardEjercice{" +
                 "titulo='" + titulo + '\'' +
-                ", muscle='" + muscle + '\'' +
+                ", idMuscle=" + idMuscle +
                 ", descripcion='" + descripcion + '\'' +
                 ", imagenResId=" + imagenResId +
                 ", id=" + id +
-                ", series=" + series +
-                ", repeticiones=" + repeticiones +
+                ", series='" + series + '\'' +
+                ", repeticiones='" + repeticiones + '\'' +
+                ", muscle='" + muscle + '\'' +
                 '}';
     }
 
@@ -60,12 +61,12 @@ public class CardEjercice {
         this.titulo = titulo;
     }
 
-    public String getMuscle() {
-        return muscle;
+    public int getIdMuscle() {
+        return idMuscle;
     }
 
-    public void setMuscle(String muscle) {
-        this.muscle = muscle;
+    public void setIdMuscle(int idMuscle) {
+        this.idMuscle = idMuscle;
     }
 
     public String getDescripcion() {
@@ -92,19 +93,27 @@ public class CardEjercice {
         this.id = id;
     }
 
-    public int getSeries() {
+    public String getSeries() {
         return series;
     }
 
-    public void setSeries(int series) {
+    public void setSeries(String series) {
         this.series = series;
     }
 
-    public int getRepeticiones() {
+    public String getRepeticiones() {
         return repeticiones;
     }
 
-    public void setRepeticiones(int repeticiones) {
+    public void setRepeticiones(String repeticiones) {
         this.repeticiones = repeticiones;
+    }
+
+    public String getMuscle() {
+        return muscle;
+    }
+
+    public void setMuscle(String muscle) {
+        this.muscle = muscle;
     }
 }

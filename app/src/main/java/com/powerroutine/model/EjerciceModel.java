@@ -9,6 +9,8 @@ public class EjerciceModel {
     private String image;
     private String material;
 
+    private boolean basic;
+
     public EjerciceModel() {
     }
 
@@ -22,7 +24,16 @@ public class EjerciceModel {
                 ", idMuscle=" + idMuscle +
                 ", image='" + image + '\'' +
                 ", material='" + material + '\'' +
+                ", basic=" + basic +
                 '}';
+    }
+
+    public boolean isBasic() {
+        return basic;
+    }
+
+    public void setBasic(boolean basic) {
+        this.basic = basic;
     }
 
     public void setId(Integer id) {

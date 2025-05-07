@@ -15,10 +15,15 @@ import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Static.BodyStatic;
 import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.MuscleStatic;
+import com.powerroutine.Static.ObjetiveStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.UserStatic;
+import com.powerroutine.Thread.LoadStatic;
 import com.powerroutine.controllerData.BodyData;
 import com.powerroutine.dtd.BodyDTD;
+import com.powerroutine.dtd.EjerciceDTD;
+import com.powerroutine.dtd.MuscleDTD;
+import com.powerroutine.dtd.ObjetiveDTD;
 import com.powerroutine.interfaces.BodyCallBack;
 import com.powerroutine.model.BodyModel;
 import com.powerroutine.model.RutineModel;
@@ -51,9 +56,8 @@ public class RutineDetailsActivity extends AppCompatActivity {
         titulo.setText(rutineModel.getType());
         System.out.println("rutina"+rutineModel.toString());
 
-
-
-
+        LoadStatic loadStatic=new LoadStatic();
+        System.out.println(loadStatic.toString());
 
 
 

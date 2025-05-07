@@ -24,6 +24,7 @@ import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
+import com.powerroutine.model.UserPreferences;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         CargarRutinas();
+        UserPreferences userPreferences= new UserPreferences();
 
     }
 
