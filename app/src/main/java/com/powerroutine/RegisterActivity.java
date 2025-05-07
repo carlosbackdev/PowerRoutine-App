@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.interfaces.RegisterCallBack;
 import com.powerroutine.controllerData.UserData;
 import com.powerroutine.form.LoginValidate;
@@ -75,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onSuccess(String response) {
                         if(response.contains("correctamente")){
                             login(null);
+                            UserStatic.user=user;
                             mostrarToast(response);
                         }else {
                             mostrarToast(response);

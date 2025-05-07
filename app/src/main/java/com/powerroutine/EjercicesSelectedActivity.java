@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardRutine;
+import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.EjerciceData;
 import com.powerroutine.controllerData.RutinaData;
@@ -127,41 +128,8 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
     }
 
     private void saveEjercicesFromApi(RutineListDtd rutineListDtd){
-        System.out.println("a cargar:"+rutineListDtd.toString());
-        try{
-            ejerciceData.getEjercices(rutineListDtd,new EjerciceCallBack() {
-                @Override
-                public void onSuccess(EjerciceDTD ejerciceDtd) {
-                    //elliminar duplicados
-                    for (EjerciceModel ejercice : ejerciceDtd.getEjercices()) {
-                        boolean exists = false;
-                        for (EjerciceModel existingEjercice : ejercices) {
-                            if (existingEjercice.getId() == ejercice.getId()) {
-                                exists = true;
-                                break;
-                            }
-                        }
-                        if (!exists) {
-                            ejercices.add(ejercice);
-                        }
-                    }
-
-
-                    System.out.println("respuesta"+ejerciceDtd.getRespuesta());
-                    System.out.println("ejercices"+ejercices.toString());
-                    loadEjercices(rutinas.get(0).getIdEjercices(),rutinas.get(0));
-                }
-                @Override
-                public void onFailure(String error) {
-                    System.out.println("Error al cargar ejercicios: "+error);
-                    mostrarToast("Error al cargar ejercicios:");
-                }
-            });
-
-        }catch (Exception e){
-            System.out.println("Error al cargar rutinas: "+e.getMessage());
-            mostrarToast("Error al cargar rutinas:");
-        }
+        ejercices= EjercicesStatic.ejerciceDTD.getEjercices();
+        loadEjercices(rutinas.get(0).getIdEjercices(),rutinas.get(0));
     }
 
     private void loadEjercices(List<Integer> ejercicesId, RutineModel rutine) {

@@ -3,6 +3,7 @@ package com.powerroutine.config;
 import com.powerroutine.dtd.BodyDTD;
 import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.LoginDtd;
+import com.powerroutine.dtd.MuscleDTD;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
@@ -40,4 +41,13 @@ public interface ApiService {
 
     @POST("body/getBodys")
     Call<BodyDTD> getBodys(@Body List<Integer> ids);
+
+    @GET("muscle/getMuscles")
+    Call<MuscleDTD> getMuscles();
+
+    @GET("body/getAllBodys")
+    Call<BodyDTD> getAllBodys();
+
+    @GET("ejercice/getAllEjercices")
+    Call<EjerciceDTD> getAllEjercices();
 }

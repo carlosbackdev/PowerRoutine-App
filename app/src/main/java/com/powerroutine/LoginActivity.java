@@ -12,12 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 
+import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.UserData;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.form.LoginValidate;
 import com.powerroutine.model.UserModel;
 import com.powerroutine.interfaces.LoginCallback;
+import com.powerroutine.service.BodyService;
+import com.powerroutine.service.EjerciceService;
+import com.powerroutine.service.MuscleService;
 import com.powerroutine.utils.FocoChange;
 
 
@@ -45,7 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         rutineSelectedActivity = new Intent(LoginActivity.this, RutineSelecetedActivity.class);
         homeActivity = new Intent(LoginActivity.this, HomeActivity.class);
 
-
+        //cargar musculos y cuerpo y ejercicios
+        MuscleService muscleService = new MuscleService();
+        muscleService.CargarMusculos();
+        BodyService bodyService = new BodyService();
+        bodyService.CargarBodys();
+        EjerciceService ejerciceService=new EjerciceService();
+        ejerciceService.CargarEjercicios();
 
         txtNombre.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {

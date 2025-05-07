@@ -12,6 +12,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Componets.Navegator;
+import com.powerroutine.Static.BodyStatic;
+import com.powerroutine.Static.EjercicesStatic;
+import com.powerroutine.Static.MuscleStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.BodyData;
@@ -46,30 +49,12 @@ public class RutineDetailsActivity extends AppCompatActivity {
 
         TextView titulo=findViewById(R.id.txtTitleDetailsRutine);
         titulo.setText(rutineModel.getType());
-        System.out.println(rutineModel.toString());
+        System.out.println("rutina"+rutineModel.toString());
 
-        CargarBodys();
 
-    }
 
-    public void CargarBodys(){
-        try{
-            bodyData.getBodys(rutineModel.getIdBody(),new BodyCallBack() {
-                @Override
-                public void onSuccess(BodyDTD bodyResponse) {
-                    bodysModels= bodyResponse.getBodys();
-                    System.out.println(bodysModels.toString());
-                }
-                @Override
-                public void onFailure(String error) {
-                    System.out.println("Error al cargar body: "+error);
-                    mostrarToast("Error al cargar body:");
-                }
-            });
-        } catch (Exception e) {
-            System.out.println("Error al cargar rutinas: "+e.getMessage());
-            mostrarToast("Error al cargar rutinas:");
-        }
+
+
     }
 
     public void mostrarToast(String mensaje) {

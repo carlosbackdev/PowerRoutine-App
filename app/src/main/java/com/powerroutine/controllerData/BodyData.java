@@ -39,4 +39,28 @@ public class BodyData {
         });
     }
 
+    public void getAllBodys(final BodyCallBack callback){
+        Call<BodyDTD> bodyResponse= apiService.getAllBodys();
+        bodyResponse.enqueue(new Callback<BodyDTD>() {
+            @Override
+            public void onResponse(Call<BodyDTD> call, Response<BodyDTD> response) {
+                if(response.isSuccessful()){
+                    bodyDTD=response.body();
+                    if (bodyDTD.getBodys() != null){
+                        callback.onSuccess(bodyDTD);
+                    } else {
+                        callback.onFailure("Error: " + bodyDTD.getRespuesta());
+                    }
+                } else {
+                    callback.onFailure("Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BodyDTD> call, Throwable t) {
+                callback.onFailure(t.toString());
+            }
+        });
+    }
+
 }

@@ -28,4 +28,12 @@ public class BodyDTD {
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
+
+    @Override
+    public String toString() {
+        return "BodyDTD{" +
+                "bodys=" + bodys +
+                ", respuesta='" + respuesta + '\'' +
+                '}';
+    }
 }

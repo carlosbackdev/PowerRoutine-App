@@ -22,6 +22,7 @@ import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Componets.Navegator;
+import com.powerroutine.Static.BodyStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
