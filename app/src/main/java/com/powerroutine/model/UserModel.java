@@ -2,7 +2,7 @@ package com.powerroutine.model;
 
 import java.io.Serializable;
 
-public class UserModel implements Serializable {
+public class UserModel{
     private Long id;
     private String name;
     private String password;

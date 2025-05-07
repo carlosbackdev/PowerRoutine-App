@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.powerroutine.HomeActivity;
 import com.powerroutine.R;
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.model.UserModel;
 
 import java.util.List;
@@ -22,16 +23,14 @@ public class Navegator {
     private String activity;
 
     private Intent home;
-    private UserModel user;
 
 
-    public Navegator(ImageButton btnHome, ImageButton btnPerfil, ImageButton btnCalendar, Context context, String activity, UserModel user) {
+    public Navegator(ImageButton btnHome, ImageButton btnPerfil, ImageButton btnCalendar, Context context, String activity ) {
         this.btnHome = btnHome;
         this.btnPerfil = btnPerfil;
         this.btnCalendar = btnCalendar;
         this.context = context;
         this.activity=activity;
-        this.user=user;
 
         home=new Intent(context, HomeActivity.class);
 
@@ -76,7 +75,6 @@ public class Navegator {
     public void home(View v) {
         // Acción para el botón de inicio
         if(!activity.equals("home")){
-            home.putExtra("user",user);
             context.startActivity(home);
 
         }

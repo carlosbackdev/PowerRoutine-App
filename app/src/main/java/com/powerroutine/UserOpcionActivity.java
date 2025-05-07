@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.UserData;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.interfaces.LoginCallback;
@@ -33,7 +34,7 @@ public class UserOpcionActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_opcion);
 
-        user = (UserModel) getIntent().getSerializableExtra("user");
+        user = UserStatic.user;
         userData= new UserData();
         loginDtd = new LoginDtd();
         rutineSelectedActivty = new Intent(this, RutineSelecetedActivity.class);
@@ -107,7 +108,7 @@ public class UserOpcionActivity extends AppCompatActivity {
                         mostrarToast(loginDtd.getRespuesta());
                         System.out.println(loginDtd.toString());
 
-                        rutineSelectedActivty.putExtra("user", loginDtd.getUserModel());
+                        UserStatic.user=loginDtd.getUserModel();
                         startActivity(rutineSelectedActivty);
                         finish();
 

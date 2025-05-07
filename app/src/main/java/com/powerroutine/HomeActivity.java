@@ -22,6 +22,8 @@ import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Componets.Navegator;
+import com.powerroutine.Static.RutineStatic;
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
@@ -33,7 +35,7 @@ import java.util.Collections;
 
 public class HomeActivity extends AppCompatActivity {
     private RutinaData rutineData;
-    private UserModel user;
+    private UserModel user= UserStatic.user;
     private ArrayList<RutineModel> rutinas;
     private TableLayout tableLayout;
     private ArrayList<CardHome> cardsCompent;
@@ -57,9 +59,9 @@ public class HomeActivity extends AppCompatActivity {
         inflater=LayoutInflater.from(this);
 
 
-        user = (UserModel) getIntent().getSerializableExtra("user");
+        user = UserStatic.user;
 
-        new Navegator(btnHome,btnPerfil,btnCalendar,this,"home",user);
+        new Navegator(btnHome,btnPerfil,btnCalendar,this,"home");
         rutineData = new RutinaData();
         cardsCompent=new ArrayList<>();
 
@@ -133,8 +135,7 @@ public class HomeActivity extends AppCompatActivity {
             card.setOnClickListener(v -> {
                 for(RutineModel rutina: rutinas){
                     if(rutina.getId() == cardComponent.getId()){
-                        rutineDetailsActivity.putExtra("rutine",rutina);
-                        rutineDetailsActivity.putExtra("user",user);
+                        RutineStatic.rutina=rutina;
                         startActivity(rutineDetailsActivity);
                         break;
                     }

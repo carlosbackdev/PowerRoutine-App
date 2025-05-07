@@ -1,10 +1,13 @@
 package com.powerroutine.config;
 
+import com.powerroutine.dtd.BodyDTD;
 import com.powerroutine.dtd.EjerciceDTD;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -34,4 +37,7 @@ public interface ApiService {
 
     @POST("rutine/updateRutineUser")
     Call<ResponseBody> updateRutineUser(@Body RutineModel rutineModel);
+
+    @POST("body/getBodys")
+    Call<BodyDTD> getBodys(@Body List<Integer> ids);
 }

@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardRutine;
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.dtd.TypeRutineDtd;
@@ -56,7 +57,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rutine_seleceted);
 
         this.txtDay = findViewById(R.id.txtEjerciceTitle);
-        this.user = (UserModel) getIntent().getSerializableExtra("user");
+        this.user = UserStatic.user;
         this.btnSave=findViewById(R.id.btnSave);
         this.txtDayRestChoice= findViewById(R.id.txtDayRestChoice);
 
@@ -233,7 +234,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
 
 
             Intent intent = new Intent(this, EjercicesSelectedActivity.class);
-            intent.putExtra("user", user);
+            UserStatic.user=user;
             startActivity(intent);
         }
     }

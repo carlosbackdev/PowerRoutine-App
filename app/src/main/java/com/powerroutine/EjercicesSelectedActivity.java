@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardRutine;
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.EjerciceData;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.EjerciceDTD;
@@ -61,7 +62,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ejercices_selected);
 
-        this.user = (UserModel) getIntent().getSerializableExtra("user");
+        this.user = UserStatic.user;
         this.btnSave=findViewById(R.id.btnSave);
         this.spnTypeRutine=findViewById(R.id.spnTypeRutine);
         this.titleRutine=findViewById(R.id.txtEjerciceTitle);
@@ -316,7 +317,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                     spinerAdapter();
                     System.out.println("ejercicios selcecionads"+ejeciciosSelected);
                     if(rutinas.isEmpty()){
-                        homeActivity.putExtra("user", user);
+                        UserStatic.user=user;
                         startActivity(homeActivity);
                         finish();
                     }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.UserData;
 import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.form.LoginValidate;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserData userData;
     private LoginDtd loginDtd;
     private Intent opcionUserActivity, rutineSelectedActivity,homeActivity;
+    private UserStatic userStatic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +78,12 @@ public class LoginActivity extends AppCompatActivity {
                         System.out.println(loginDtd.toString());
                         if(loginDtd.getUserModel().getDaysWeek() == null || loginDtd.getUserModel().getDaysWeek() <=1){
                             user=loginDtd.getUserModel();
-                            opcionUserActivity.putExtra("user", user);
+                            userStatic.user=user;
                             startActivity(opcionUserActivity);
                             finish();
 
                         }else{
-                            homeActivity.putExtra("user", loginDtd.getUserModel());
+                            UserStatic.user=loginDtd.getUserModel();
                             startActivity(homeActivity);
                             finish();
                         }
