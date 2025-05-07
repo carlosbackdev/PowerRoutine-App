@@ -1,5 +1,10 @@
 package com.powerroutine.Componets;
 
+import com.powerroutine.Static.MuscleStatic;
+import com.powerroutine.model.MuscleModel;
+
+import java.util.List;
+
 public class CardEjercice {
     private String titulo;
     private int idMuscle;
@@ -21,6 +26,17 @@ public class CardEjercice {
         this.repeticiones = repeticiones;
 
         //coger los id de los musculos o poner su nombre desde cargados
+        musculos();
+    }
+
+    private void musculos(){
+        List<MuscleModel> musculos=MuscleStatic.muscleDTD.getMuscles();
+        for(MuscleModel musculo:musculos){
+            if(musculo.getId() == idMuscle){
+                this.muscle=musculo.getName();
+            }
+        }
+
     }
 
     @Override
