@@ -2,13 +2,26 @@ package com.powerroutine.Componets;
 
 public class CardEjercice {
     private String titulo;
-    private String muscle;
+    private int idMuscle;
     private String descripcion;
     private int imagenResId;
     private int id;
 
     private int series;
     private int repeticiones;
+    private String muscle;
+
+    public CardEjercice(String titulo, int idMuscle, String descripcion, int imagenResId, int id, int series, int repeticiones) {
+        this.titulo = titulo;
+        this.idMuscle = idMuscle;
+        this.descripcion = descripcion;
+        this.imagenResId = imagenResId;
+        this.id = id;
+        this.series = series;
+        this.repeticiones = repeticiones;
+
+        //coger los id de los musculos o poner su nombre desde cargados
+    }
 
     @Override
     public String toString() {
