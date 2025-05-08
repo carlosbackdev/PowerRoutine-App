@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_background"
-    tools:context=".RutineDetailsActivity">
+    tools:context=".EjerciceDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -33,14 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TableLayout
-                    android:id="@+id/tablaEjercicios"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" />
-            </LinearLayout>
+                android:orientation="vertical"/>
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fredoka_one"
-                android:text="@string/titleRutineDetails"
+                android:text="Ejercicio"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +96,8 @@
                 app:layout_constraintVertical_bias="1.0">
 
                 <Space
-                    android:layout_width="10dp"
-                    android:layout_height="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -118,19 +111,6 @@
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnCompleteRutine"
-                    style="@style/ButtonBaseStyleDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/btnHechoCardRutine" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="12dp"
                     android:layout_weight="1" />
 
             </LinearLayout>

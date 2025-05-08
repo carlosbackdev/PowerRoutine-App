@@ -13,27 +13,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardEjercice;
 import com.powerroutine.Componets.CardEjerciceCreation;
 import com.powerroutine.Componets.Navegator;
-import com.powerroutine.Static.BodyStatic;
 import com.powerroutine.Static.EjercicesStatic;
-import com.powerroutine.Static.MuscleStatic;
-import com.powerroutine.Static.ObjetiveStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;
 import com.powerroutine.controllerData.BodyData;
-import com.powerroutine.dtd.BodyDTD;
-import com.powerroutine.dtd.EjerciceDTD;
-import com.powerroutine.dtd.MuscleDTD;
-import com.powerroutine.dtd.ObjetiveDTD;
-import com.powerroutine.interfaces.BodyCallBack;
 import com.powerroutine.model.BodyModel;
 import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.RutineModel;
@@ -41,7 +29,6 @@ import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class RutineDetailsActivity extends AppCompatActivity {
     private RutineModel rutineModel;
@@ -75,7 +62,7 @@ public class RutineDetailsActivity extends AppCompatActivity {
         rutineModel = RutineStatic.rutina;
         new Navegator(btnHome,btnPerfil,btnCalendar,this,"other");
 
-        TextView titulo=findViewById(R.id.txtTitleDetailsRutine);
+        TextView titulo=findViewById(R.id.txtTitleDetailsEjercice);
         titulo.setText(rutineModel.getType());
         System.out.println("rutina"+rutineModel.toString());
 
@@ -89,8 +76,6 @@ public class RutineDetailsActivity extends AppCompatActivity {
                 }
             }
         }
-        System.out.println(UserStatic.user.toString());
-
         cargarCardCompenent();
 
     }
