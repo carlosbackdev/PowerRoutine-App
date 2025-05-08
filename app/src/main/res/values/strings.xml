@@ -33,6 +33,9 @@
     <string name="btnHechoCard">Hecho</string>
     <string name="btnDetallesCardBack">Atras</string>
     <string name="btnHechoCardRutine">Hecho</string>
+    <string name="ejercideDetailMuscle">Músculo</string>
+    <string name="ejercideDetailTecnica">Técnica</string>
+
 
 
 </resources>
