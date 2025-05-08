@@ -12,9 +12,9 @@
         android:text="btnDetails" />
 
     <LinearLayout
-        android:id="@+id/rutinaCard"
+        android:id="@+id/ejerciceCard"
         android:layout_width="193dp"
-        android:layout_height="329dp"
+        android:layout_height="349dp"
         android:background="@drawable/rounded_border"
         android:orientation="vertical"
         android:padding="10dp">

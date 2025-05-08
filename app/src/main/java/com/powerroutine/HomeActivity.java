@@ -18,6 +18,7 @@ import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Static.RutineStatic;
+import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
@@ -65,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
         CargarRutinas();
         UserPreferences userPreferences= new UserPreferences();
+        UserPreferencesStatic.userPreferences=userPreferences;
 
     }
 

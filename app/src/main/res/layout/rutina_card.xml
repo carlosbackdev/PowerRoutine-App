@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/rutinaCard"
+        android:id="@+id/ejerciceCard"
         android:layout_width="193dp"
         android:layout_height="309dp"
         android:background="@drawable/rounded_border"

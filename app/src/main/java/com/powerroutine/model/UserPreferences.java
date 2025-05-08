@@ -30,9 +30,6 @@ public class UserPreferences {
                 objetive = objetiveModel;
             }
         }
-        System.out.println(user);
-        System.out.println(levelRange);
-        System.out.println(objetive);
 
     }
 

@@ -1,7 +1,9 @@
 package com.powerroutine.Componets;
 
+import android.view.View;
 import android.widget.TableLayout;
 
+import com.powerroutine.R;
 import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.model.EjerciceModel;
@@ -10,6 +12,8 @@ import com.powerroutine.model.UserPreferences;
 
 import java.util.ArrayList;
 import android.content.Context;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 
 public class CardEjerciceCreation {
@@ -32,12 +36,14 @@ public class CardEjerciceCreation {
 
             String repeticiones="";
             if(ejercice.isBasic()){
-               int rep=Integer.parseInt(userPreferences.getLevelRange().getRangeSeries());
+               int rep=Integer.parseInt(userPreferences.getObjetive().getRangeRep());
                rep-=4;
                if(rep<5){
                    rep=5;
                }
                 repeticiones=String.valueOf(rep);
+            }else {
+                repeticiones=userPreferences.getObjetive().getRangeRep();
             }
 
             cardEjercice=new CardEjercice(
@@ -49,9 +55,47 @@ public class CardEjerciceCreation {
                     userPreferences.getLevelRange().getRangeSeries(),
                     repeticiones
             );
-
+            cardsEjercices.add(cardEjercice);
         }
-        return null;
+        return cardsEjercices;
     }
+
+    public TableLayout createLayoutCards(Context context,ArrayList<View> cardsView){
+        tableLayout.removeAllViews();
+
+        for (int i = 0; i < cardsView.size(); i += 2) {
+            TableRow row = new TableRow(context);
+
+            row.addView(cardsView.get(i));
+
+            // Carga la segunda tarjeta si existe
+            if (i + 1 < cardsView.size()) {
+                row.addView(cardsView.get(i+1));
+            } else {
+                // Si es impar, rellena con un espacio en blanco
+                View emptyView = new View(context);
+                emptyView.setLayoutParams(new TableRow.LayoutParams(0, 0, 1));
+                row.addView(emptyView);
+            }
+
+            tableLayout.addView(row);
+        }
+        if(cardsView.size()==0){
+            TextView emptyMessage = new TextView(context);
+            emptyMessage.setTextAppearance(context, R.style.TextViewHeaderBlackStyle);
+            emptyMessage.setTextColor(context.getResources().getColor(R.color.text_grey));
+            emptyMessage.setText("No hay rutinas o ejercicios disponibles.");
+            emptyMessage.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            emptyMessage.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT
+            ));
+            tableLayout.addView(emptyMessage);
+        }
+
+
+        return tableLayout;
+    }
+
 
 }
