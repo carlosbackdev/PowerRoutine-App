@@ -112,11 +112,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView9"
+                            style="@style/TextViewBaseStyleSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textColor="@color/secundary_color"
+                            android:textSize="16sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -135,7 +138,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txtSeries"
+                                android:id="@+id/txtRepeticiones"
                                 style="@style/TextViewBaseStyleSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -189,7 +192,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txtSeries"
+                                android:id="@+id/txtDescanso"
                                 style="@style/TextViewBaseStyleSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -208,29 +211,147 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/textView15"
+                            style="@style/TextViewBaseStyleSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="Material" />
+                            android:text="Material"
+                            android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView15"
+                            android:id="@+id/txtMaterial"
+                            style="@style/TextViewBaseStyleSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView16"
+                            style="@style/TextViewBaseStyleSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Descripcion" />
+                            android:gravity="center"
+                            android:text="Descripcion"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txtDesc"
+                            style="@style/TextViewBaseStyleSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Cronómetro -->
+                    <TextView
+                        android:id="@+id/cronometroLabel"
+                        style="@style/TextViewHeaderStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="7dp"
+                        android:text="Cronómetro"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Chronometer
+                        android:id="@+id/cronometro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:format="%s"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="32sp" />
+
+                    <!-- Separador -->
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnResetCronometro"
+                            style="@style/ButtonBaseStyleDark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="Reset"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.498"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="26dp"
+                        android:background="#CCCCCC" />
+
+                    <!-- Contador de Series -->
+                    <TextView
+                        android:id="@+id/seriesLabel"
+                        style="@style/TextViewHeaderStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Series completadas"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMenosSeries"
+                            style="@style/ButtonBaseStyleDark"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:text="−" />
+
+                        <TextView
+                            android:id="@+id/seriesCounter"
+                            android:layout_width="64dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/secundary_color"
+                            android:textSize="24sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMasSeries"
+                            style="@style/ButtonBaseStyleDark"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:text="+" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
+
+
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
