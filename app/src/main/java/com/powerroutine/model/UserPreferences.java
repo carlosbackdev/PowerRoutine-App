@@ -33,6 +33,37 @@ public class UserPreferences {
 
     }
 
+    public int restarRepeticiones(EjerciceModel ejerciceModel) {
+        if (ejerciceModel.isBasic()) {
+            int rep = Integer.parseInt(objetive.getRangeRep());
+            rep -= 4;
+            if (rep < 5) {
+                rep = 5;
+            }
+            return rep;
+        }
+        return Integer.parseInt(objetive.getRangeRep());
+    }
+
+    public double getDescanso(EjerciceModel ejerciceModel){
+        double descanso=0.0;
+        if(user.getObjetive() ==1){
+            descanso=5;
+        } else if (user.getObjetive() ==2) {
+            descanso=3.5;
+        }else {
+            descanso=1.5;
+        }
+        if(!ejerciceModel.isBasic()){
+            descanso-=1.5;
+        }
+        if (descanso==0){
+            descanso=1;
+        }
+        return descanso;
+
+    }
+
 
     public LevelRange getLevelRange() {
         return levelRange;

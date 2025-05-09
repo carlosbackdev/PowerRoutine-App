@@ -1,5 +1,6 @@
 package com.powerroutine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class RutineDetailsActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private ArrayList<CardEjercice> cardsComponents;
     private ArrayList<EjerciceModel> ejercices;
+    private Intent ejerciceDetailsActivity;
 
 
     @Override
@@ -52,7 +54,7 @@ public class RutineDetailsActivity extends AppCompatActivity {
         inflater=LayoutInflater.from(this);
         cardsComponents=new ArrayList<>();
         ejercices=new ArrayList<>();
-
+        ejerciceDetailsActivity=new Intent(this,EjerciceDetailsActivity.class);
 
 
         ImageButton btnHome = findViewById(R.id.btnHome);
@@ -112,12 +114,25 @@ public class RutineDetailsActivity extends AppCompatActivity {
             series.setText(cardEjercice.getSeries());
             repeticiones.setText(cardEjercice.getRepeticiones());
 
+
+            btnDetalles.setOnClickListener(v -> {
+                // Acción al hacer clic en "Detalles"
+                ejerciceDetailsActivity.putExtra("id",cardEjercice.getId());
+                startActivity(ejerciceDetailsActivity);
+            });
+
+            // Configurar onClick para btnHecho
+            btnHecho.setOnClickListener(v -> {
+                // Acción al hacer clic en "Hecho"
+                mostrarToast("Ejercicio completado: " + cardEjercice.getTitulo());
+            });
+
             // Configurar márgenes
             TableRow.LayoutParams params = new TableRow.LayoutParams(
                     TableRow.LayoutParams.WRAP_CONTENT,
                     TableRow.LayoutParams.WRAP_CONTENT
             );
-            int margin = (int) getResources().getDimension(R.dimen.card_margin);
+            int margin = 20;
             params.setMargins(margin, margin, margin, margin);
             card.setLayoutParams(params);
 

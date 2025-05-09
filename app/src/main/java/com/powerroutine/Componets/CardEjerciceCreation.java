@@ -35,16 +35,7 @@ public class CardEjerciceCreation {
             int imgResId = context.getResources().getIdentifier(ejercice.getImage().toLowerCase(), "drawable", context.getPackageName());
 
             String repeticiones="";
-            if(ejercice.isBasic()){
-               int rep=Integer.parseInt(userPreferences.getObjetive().getRangeRep());
-               rep-=4;
-               if(rep<5){
-                   rep=5;
-               }
-                repeticiones=String.valueOf(rep);
-            }else {
-                repeticiones=userPreferences.getObjetive().getRangeRep();
-            }
+            repeticiones=userPreferences.restarRepeticiones(ejercice)+"";
 
             cardEjercice=new CardEjercice(
                     ejercice.getName(),
