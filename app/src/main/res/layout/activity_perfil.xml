@@ -9,6 +9,408 @@
     tools:context=".PerfilActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="416dp"
+        android:layout_height="78dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtTitlePerfil"
+            style="@style/TextViewHeaderStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_one"
+            android:paddingLeft="10sp"
+            android:text="perfil"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="52dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_backgorund"
+            android:padding="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txtTitlePerfil"
+            app:layout_constraintHorizontal_bias="0.918"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:srcCompat="@drawable/perfil"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="635dp"
+        android:padding="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <!-- Sección 1: Datos de Usuario -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/button_background_dark"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/TextViewHeaderStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10sp"
+                    android:text="Datos de Usuario"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nombre:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtNameUser"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Juan Pérez" />
+
+                    <ImageButton
+                        android:id="@+id/btnEditName"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtEmailUser"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="juan@ejemplo.com" />
+
+                    <ImageButton
+                        android:id="@+id/btnEditEmail"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_edit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSaveEdit"
+                        style="@style/ButtonBaseStyleDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/btnUpdateText" />
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/button_background_dark"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <TextView
+                    style="@style/TextViewHeaderStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10sp"
+                    android:text="Preferencias de Rutina"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Objetivo:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtGoalUser"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Ganar masa muscular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nivel:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtLeveUser"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Intermedio" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Días de entreno:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtDaysUser"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Lunes, Miércoles, Viernes" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSaveEdit"
+                        style="@style/ButtonBaseStyleOrange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/btnUpdateText" />
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/button_background_dark"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <TextView
+                    style="@style/TextViewHeaderStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rutina Actual"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewBaseStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tipo de rutina:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTypeRoutine"
+                        style="@style/TextViewSecondaryStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Fuerza y volumen" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewBaseStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Detalles:"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvRoutineDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background_dark"
+                    android:padding="12dp"
+                    android:text="• Press banca: 3x10 (50kg)\n• Sentadillas: 4x12 (60kg)\n• Dominadas: 3x8\n• Peso muerto: 3x5 (80kg)\n• Press militar: 3x8 (30kg)"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Sección 2: Preferencias de Rutina -->
+
+            <!-- Sección 3: Rutina Actual -->
+
+            <!-- Detalles de la rutina -->
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="413dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBack"
+                style="@style/ButtonBaseStyleOrange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="back"
+                android:text="@string/btnDetallesCardBack" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveUser"
+                style="@style/ButtonBaseStyleDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="savePerfil"
+                android:text="@string/btnSaveUser" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDeleteUser"
+                style="@style/ButtonBaseStyleDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_red"
+                android:onClick="deletePerfil"
+                android:text="@string/btnDeleteUser" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
