@@ -16,15 +16,16 @@
         android:theme="@style/Theme.PowerRoutine"
         tools:targetApi="31">
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".EjerciceDetailsActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RutineDetailsActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
             android:exported="true"
