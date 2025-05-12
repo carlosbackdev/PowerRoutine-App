@@ -7,7 +7,9 @@ import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.dtd.MuscleDTD;
 import com.powerroutine.dtd.ObjetiveDTD;
 import com.powerroutine.dtd.RutineListDtd;
+import com.powerroutine.dtd.UserCompletesDTD;
 import com.powerroutine.model.RutineModel;
+import com.powerroutine.model.UserCompletesModel;
 import com.powerroutine.model.UserModel;
 
 import java.util.List;
@@ -58,4 +60,9 @@ public interface ApiService {
 
     @GET("level/getAllLevels")
     Call <LevelDTD> getAllLevels();
+
+    @POST("userCompletes/getUserCompletes")
+    Call <UserCompletesDTD> getUserCompletes(@Body UserModel user);
+    @POST("userCompletes/isComplete")
+    Call <Boolean> saveUserComplete(@Body UserCompletesModel userCompletesModel);
     }

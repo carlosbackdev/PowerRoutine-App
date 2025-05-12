@@ -1,5 +1,7 @@
 package com.powerroutine;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -8,22 +10,25 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.MuscleStatic;
+import com.powerroutine.Static.UserCompletesStatic;
 import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
+import com.powerroutine.Thread.Cronometro;
 import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.MuscleModel;
+import com.powerroutine.model.RutineModel;
+import com.powerroutine.model.UserCompletesModel;
 import com.powerroutine.model.UserModel;
 import com.powerroutine.model.UserPreferences;
+import com.powerroutine.service.UserCompletesService;
 
 public class EjerciceDetailsActivity extends AppCompatActivity {
 
@@ -31,11 +36,14 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
     private MuscleModel muscle;
     private UserPreferences userPreferences;
     private ImageView imgEjerciceTecnica,imgEjerciceMuscle;
-    private TextView txtRepeticiones,txtSeries,txtDescanso,txtMaterial,txtDescripcion,txtSeriesCounter,txtTitleMuscle;
+    private TextView txtRepeticiones,txtSeries,txtDescanso,txtMaterial,txtDescripcion,txtSeriesCounter,txtTitleMuscle,txtTitleDetailsEjercice;
     private Chronometer cronometro;
     private Button btnStart,btnStop,btnReset,btnComplete;
     private double maxTime;
     private int contadorSeries,seriesMax,seriesMin;
+    private UserModel user;
+    private boolean isComplete;
+    private RutineModel rutineModel= new RutineModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,7 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ejercice_details);
 
+        txtTitleDetailsEjercice=findViewById(R.id.txtTitleDetailsEjercice);
         imgEjerciceTecnica=findViewById(R.id.imgEjerciceTecnica);
         imgEjerciceMuscle=findViewById(R.id.imgEjerciceMuscle);
         txtRepeticiones=findViewById(R.id.txtRepeticiones);
@@ -65,16 +74,18 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
         ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
         new Navegator(btnHome,btnPerfil,btnCalendar,this,"other");
-
         userPreferences= UserPreferencesStatic.userPreferences;
+        user= UserStatic.user;
+
+        rutineModel=(RutineModel) getIntent().getSerializableExtra("rutine");
 
         cargarDatos();
-        cargarVista();
     }
     private void cargarVista(){
         int imgResIdEjercice = this.getResources().getIdentifier(ejercie.getImage().toLowerCase(), "drawable", this.getPackageName());
         int imgResIdMuscle = this.getResources().getIdentifier(muscle.getImage().toLowerCase(), "drawable", this.getPackageName());
 
+        txtTitleDetailsEjercice.setText(ejercie.getName());
         txtTitleMuscle.setText(muscle.getName());
         imgEjerciceMuscle.setImageResource(imgResIdMuscle);
         imgEjerciceTecnica.setImageResource(imgResIdEjercice);
@@ -86,9 +97,11 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
         String descanso= String.valueOf(userPreferences.getDescanso(ejercie))+" m";
         txtDescanso.setText(descanso);
 
+        itemCompleted();
+
     }
 
-    public void cargarDatos(){
+    private void cargarDatos(){
         int id = getIntent().getIntExtra("id", -1);
         if(id != -1){
             for(EjerciceModel ejercicio: EjercicesStatic.ejerciceDTD.getEjercices()){
@@ -104,6 +117,25 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
         }
         maxTime=userPreferences.getDescanso(ejercie);
 
+        System.out.println("debe haber uno"+UserCompletesStatic.userCompletesDTD);
+
+        UserCompletesService userCompletesService=new UserCompletesService();
+        int n=0;
+        for (Integer ids: rutineModel.getIdEjercices()){
+            n+=ids;
+        }
+        n+=user.getId();
+        if(userCompletesService.isCompleted(rutineModel.getId()+ n + ejercie.getId())){
+            isComplete=true;
+        }
+        cargarVista();
+    }
+    private void itemCompleted(){
+        if(isComplete){
+            btnComplete.setBackgroundResource(R.drawable.button_background_green);
+        }else {
+            btnComplete.setBackgroundResource(R.drawable.button_background_dark);
+        }
     }
 
     public void start(View v){
@@ -111,6 +143,11 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
         btnStart.setBackgroundResource(R.drawable.button_background_dark);
         btnStop.setBackgroundResource(R.drawable.button_background_orange);
         btnReset.setBackgroundResource(R.drawable.button_background_orange);
+
+        Cronometro cronometroClass = new Cronometro(cronometro,btnStart,btnStop,maxTime);
+        cronometroClass.start();
+
+
     }
     public void stop(View v){
         cronometro.stop();
@@ -160,7 +197,34 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
     }
 
     public void back(View v){
+        Intent rutineDetailsActivity=new Intent(this,RutineDetailsActivity.class);
+        startActivity(rutineDetailsActivity);
         finish();
+    }
+    public void complete(View v){
+        if(!isComplete){
+            UserCompletesModel userCompletesModel=new UserCompletesModel();
+            int n=0;
+            for (Integer ids: rutineModel.getIdEjercices()){
+                n+=ids;
+            }
+            n+=user.getId();
+            userCompletesModel.setIdItem(rutineModel.getId()+ n + ejercie.getId());
+            userCompletesModel.setIdUser(user.getId().intValue());
+            userCompletesModel.setCompleted(true);
+            UserCompletesService userCompletesService=new UserCompletesService();
+            userCompletesService.saveUserCompletes(userCompletesModel, this);
+            isComplete=true;
+            itemCompleted();
+        }
+
+    }
+
+
+
+
+    private void mostrarToast(String mensaje) {
+        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
 
 }

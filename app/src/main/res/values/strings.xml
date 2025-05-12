@@ -29,7 +29,7 @@
     <string name="rutinaSelected">Rutina</string>
     <string name="homeTitle">Tus Rutinas</string>
     <string name="titleRutineDetails">Rutina</string>
-    <string name="btnDetallesCard">Info</string>
+    <string name="btnDetallesCard">Start</string>
     <string name="btnHechoCard">Hecho</string>
     <string name="btnDetallesCardBack">Atras</string>
     <string name="btnHechoCardRutine">Hecho</string>

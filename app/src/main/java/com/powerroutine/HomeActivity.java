@@ -18,6 +18,7 @@ import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Static.RutineStatic;
+import com.powerroutine.Static.UserCompletesStatic;
 import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
@@ -26,6 +27,7 @@ import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 import com.powerroutine.model.UserPreferences;
+import com.powerroutine.service.UserCompletesService;
 
 import java.util.ArrayList;
 
@@ -64,9 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         rutineDetailsActivity=new Intent(this,RutineDetailsActivity.class);
 
 
-        CargarRutinas();
+        UserCompletesService userCompletesService= new UserCompletesService();
+        userCompletesService.CargarItemComplete();
+
         UserPreferences userPreferences= new UserPreferences();
         UserPreferencesStatic.userPreferences=userPreferences;
+
+        CargarRutinas();
 
     }
 
@@ -120,6 +126,16 @@ public class HomeActivity extends AppCompatActivity {
             }else{
                 completed.setTextColor(getResources().getColor(R.color.text_grey));
             }
+
+            if(UserCompletesStatic.userCompletesDTD.getUserCompletesModel() != null){
+                UserCompletesService userCompletesService= new UserCompletesService();
+                if(userCompletesService.isCompleted(cardComponent.getId())){
+                    completed.setTextColor(getResources().getColor(R.color.green));
+                    completed.setText("Completado");
+                }
+
+            }
+
 
             // Configurar márgenes
             TableRow.LayoutParams params = new TableRow.LayoutParams(

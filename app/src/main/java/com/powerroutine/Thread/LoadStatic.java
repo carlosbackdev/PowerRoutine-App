@@ -15,6 +15,7 @@ import com.powerroutine.service.EjerciceService;
 import com.powerroutine.service.LevelService;
 import com.powerroutine.service.MuscleService;
 import com.powerroutine.service.ObjetiveService;
+import com.powerroutine.service.UserCompletesService;
 
 public class LoadStatic extends Thread{
     private MuscleDTD muscleDTD= MuscleStatic.muscleDTD;
@@ -38,8 +39,6 @@ public class LoadStatic extends Thread{
 
         LevelService levelService=new LevelService();
         levelService.cargarLevels();
-
-
     }
 
     @Override

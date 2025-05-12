@@ -26,7 +26,9 @@ import com.powerroutine.controllerData.BodyData;
 import com.powerroutine.model.BodyModel;
 import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.RutineModel;
+import com.powerroutine.model.UserCompletesModel;
 import com.powerroutine.model.UserModel;
+import com.powerroutine.service.UserCompletesService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,11 @@ public class RutineDetailsActivity extends AppCompatActivity {
     private ArrayList<CardEjercice> cardsComponents;
     private ArrayList<EjerciceModel> ejercices;
     private Intent ejerciceDetailsActivity;
+    private List<Integer> CompletesEjercice=new ArrayList<>();
+    private Button btnComplete;
+    private  UserCompletesService userCompletesService=new UserCompletesService();
+    private boolean isCompleteRutine=false;
+
 
 
     @Override
@@ -60,6 +67,7 @@ public class RutineDetailsActivity extends AppCompatActivity {
         ImageButton btnHome = findViewById(R.id.btnHome);
         ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
+        btnComplete=findViewById(R.id.btnCompleteRutine);
         user= UserStatic.user;
         rutineModel = RutineStatic.rutina;
         new Navegator(btnHome,btnPerfil,btnCalendar,this,"other");
@@ -78,7 +86,16 @@ public class RutineDetailsActivity extends AppCompatActivity {
                 }
             }
         }
+
+        if(userCompletesService.isCompleted(rutineModel.getId())){
+            btnComplete.setBackgroundResource(R.drawable.button_background_green);
+            isCompleteRutine=true;
+        }
+
+
         cargarCardCompenent();
+
+
 
     }
 
@@ -114,17 +131,42 @@ public class RutineDetailsActivity extends AppCompatActivity {
             series.setText(cardEjercice.getSeries());
             repeticiones.setText(cardEjercice.getRepeticiones());
 
+            int n=0;
+            for (Integer ids: rutineModel.getIdEjercices()){
+                n+=ids;
+            }
+            n+=user.getId();
+            if(userCompletesService.isCompleted(rutineModel.getId()+ n + cardEjercice.getId() )){
+                CompletesEjercice.add(cardEjercice.getId());
+                btnHecho.setBackgroundResource(R.drawable.button_background_green);
+            }
+
 
             btnDetalles.setOnClickListener(v -> {
                 // Acción al hacer clic en "Detalles"
                 ejerciceDetailsActivity.putExtra("id",cardEjercice.getId());
+                ejerciceDetailsActivity.putExtra("rutine",rutineModel);
                 startActivity(ejerciceDetailsActivity);
             });
 
             // Configurar onClick para btnHecho
             btnHecho.setOnClickListener(v -> {
-                // Acción al hacer clic en "Hecho"
-                mostrarToast("Ejercicio completado: " + cardEjercice.getTitulo());
+                if (!CompletesEjercice.contains(rutineModel.getId() + cardEjercice.getId())) {
+                    // Crear el modelo y guardar el estado como completado
+                    UserCompletesModel userCompletesModel = new UserCompletesModel();
+                    int n2=0;
+                    for (Integer ids: rutineModel.getIdEjercices()){
+                        n2+=ids;
+                    }
+                    n2+=user.getId();
+                    userCompletesModel.setIdItem(rutineModel.getId()+ n2 + cardEjercice.getId());
+                    userCompletesModel.setIdUser(user.getId().intValue());
+                    userCompletesModel.setCompleted(true);
+                    userCompletesService.saveUserCompletes(userCompletesModel, this);
+                    CompletesEjercice.add(rutineModel.getId()+ cardEjercice.getId());
+
+                    btnHecho.setBackgroundResource(R.drawable.button_background_green);
+                }
             });
 
             // Configurar márgenes
@@ -146,6 +188,23 @@ public class RutineDetailsActivity extends AppCompatActivity {
     public void mostrarToast(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
+    public void complete(View v){
+        if(!isCompleteRutine){
+            UserCompletesModel userCompletesModel=new UserCompletesModel();
+            userCompletesModel.setIdItem(rutineModel.getId());
+            userCompletesModel.setIdUser(user.getId().intValue());
+            userCompletesModel.setCompleted(true);
+            UserCompletesService userCompletesService=new UserCompletesService();
+            userCompletesService.saveUserCompletes(userCompletesModel, this);
+            isCompleteRutine=true;
+            btnComplete.setBackgroundResource(R.drawable.button_background_green);
+        }
+    }
 
+    public void back(View v){
+        Intent HomeActivity=new Intent(this,HomeActivity.class);
+        startActivity(HomeActivity);
+        finish();
+    }
 
 }
