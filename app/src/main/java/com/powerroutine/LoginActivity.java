@@ -67,13 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                 txtPasswd.setTextColor(Color.WHITE);
             }
         });
-
-        LoadStatic loadStaticHilo = new LoadStatic();
-        try {
-            loadStaticHilo.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void login(View V) {

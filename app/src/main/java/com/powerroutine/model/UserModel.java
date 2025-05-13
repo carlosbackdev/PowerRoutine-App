@@ -1,5 +1,8 @@
 package com.powerroutine.model;
 
+import com.powerroutine.Static.LevelStatic;
+import com.powerroutine.Static.ObjetiveStatic;
+
 import java.io.Serializable;
 
 public class UserModel{
@@ -10,6 +13,27 @@ public class UserModel{
     private Integer daysWeek;
     private Integer idLevelRange;
     private Integer idObjetive;
+
+    public String getLevelString(){
+        if(LevelStatic.levelDTD.getLevels() !=null){
+            for (LevelRange level : LevelStatic.levelDTD.getLevels()) {
+                if(level.getId() == idLevelRange){
+                    return level.getName();
+                }
+            }
+        }
+        return "id"+idLevelRange;
+    }
+    public String getObjetiveString(){
+        if(ObjetiveStatic.objetiveDTD.getObjetives() !=null){
+            for (ObjetiveModel objetive : ObjetiveStatic.objetiveDTD.getObjetives()) {
+                if(objetive.getId() == idObjetive){
+                    return objetive.getName();
+                }
+            }
+        }
+        return "id"+idObjetive;
+    }
 
     public void setObjetive(Integer idObjective) {
         this.idObjetive = idObjective;

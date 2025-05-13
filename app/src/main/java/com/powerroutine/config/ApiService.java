@@ -26,8 +26,11 @@ public interface ApiService {
     Call<LoginDtd> login(@Body UserModel user);
     @POST("user/register")
     Call<ResponseBody> resgister(@Body UserModel user);
+
     @POST("user/update")
     Call<LoginDtd> update(@Body UserModel user);
+    @POST("user/delete")
+    Call<Boolean> delete(@Body UserModel user);
     @POST("rutine/getRutine")
     Call<RutineListDtd> getRutinesForDay(@Body UserModel user);
 

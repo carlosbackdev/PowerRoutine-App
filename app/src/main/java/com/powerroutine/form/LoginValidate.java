@@ -3,6 +3,8 @@ package com.powerroutine.form;
 import android.graphics.Color;
 import android.widget.EditText;
 
+import com.powerroutine.model.UserModel;
+
 public class LoginValidate {
     private EditText username;
     private EditText password;
@@ -17,6 +19,9 @@ public class LoginValidate {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public LoginValidate() {
     }
 
     public boolean validate(){
@@ -54,5 +59,11 @@ public class LoginValidate {
             validado = false;
         }
         return  validado;
+    }
+    public boolean validateUpdate(UserModel user){
+        if(user.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$") && user.getName().length()>4){
+            return  true;
+        }
+        return  false;
     }
 }

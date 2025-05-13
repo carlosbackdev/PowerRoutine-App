@@ -18,6 +18,7 @@ import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Static.RutineStatic;
+import com.powerroutine.Static.RutinesListStatic;
 import com.powerroutine.Static.UserCompletesStatic;
 import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
@@ -82,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(RutineListDtd rutineListDtd) {
                     rutinas=rutineListDtd.getRutinas();
+                    RutinesListStatic.rutinas=rutineListDtd;
                     cargarCardCompenent();
                 }
 

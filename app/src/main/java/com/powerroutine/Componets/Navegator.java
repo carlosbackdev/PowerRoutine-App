@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 
 import com.powerroutine.HomeActivity;
+import com.powerroutine.PerfilActivity;
 import com.powerroutine.R;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.model.UserModel;
@@ -22,7 +23,7 @@ public class Navegator {
     private Context context;
     private String activity;
 
-    private Intent home;
+    private Intent home,perfil;
 
 
     public Navegator(ImageButton btnHome, ImageButton btnPerfil, ImageButton btnCalendar, Context context, String activity ) {
@@ -33,6 +34,7 @@ public class Navegator {
         this.activity=activity;
 
         home=new Intent(context, HomeActivity.class);
+        perfil=new Intent(context, PerfilActivity.class);
 
 
         setupListeners();
@@ -52,16 +54,16 @@ public class Navegator {
         if(activity.equals("home")) {
             btnHome.setBackground(ContextCompat.getDrawable(context, R.color.primary_color_intense));
         } else if (activity.equals("perfil")) {
-            btnPerfil.setBackgroundColor(Color.WHITE);
+            btnPerfil.setBackground(ContextCompat.getDrawable(context, R.color.primary_color_intense));
         } else if (activity.equals("calendar")) {
-            btnCalendar.setBackgroundColor(Color.WHITE);
+            btnCalendar.setBackground(ContextCompat.getDrawable(context, R.color.primary_color_intense));
         }
     }
 
     public void perfil(View v) {
         // Acción para el botón de perfil
         if(!activity.equals("perfil")){
-
+            context.startActivity(perfil);
         }
     }
 

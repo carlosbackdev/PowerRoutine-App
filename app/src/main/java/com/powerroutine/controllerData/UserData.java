@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.powerroutine.config.ApiService;
 import com.powerroutine.config.RetrofitClient;
 import com.powerroutine.dtd.LoginDtd;
+import com.powerroutine.interfaces.DeleteUserCallBack;
 import com.powerroutine.interfaces.LoginCallback;
 import com.powerroutine.interfaces.RegisterCallBack;
 import com.powerroutine.interfaces.UpdateUserCallBack;
@@ -166,6 +167,30 @@ public class UserData {
             }
         });
 
+    }
+
+    public void deleteUser(UserModel user, final DeleteUserCallBack callBack){
+        Call<Boolean> deleteCall= apiService.delete(user);
+        deleteCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()){
+                    Boolean respuesta= response.body();
+                    if (respuesta!=null){
+                        callBack.onSuccess(respuesta);
+                    }else {
+                        callBack.onFailure("error al eliminar el usuario");
+                    }
+                }else {
+                    callBack.onFailure("error al eliminar el usuario");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                callBack.onFailure(t.getMessage());
+            }
+        });
     }
 
 

@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="416dp"
-        android:layout_height="78dp"
+        android:layout_height="95dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/fredoka_one"
             android:paddingLeft="10sp"
+            android:paddingBottom="10sp"
             android:text="perfil"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,30 +37,32 @@
             android:id="@+id/imageView"
             android:layout_width="52dp"
             android:layout_height="35dp"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="53dp"
+
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="7dp"
             android:background="@drawable/button_backgorund"
             android:padding="5sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txtTitlePerfil"
-            app:layout_constraintHorizontal_bias="0.918"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:srcCompat="@drawable/perfil"
-
-            />
+            app:srcCompat="@drawable/perfil"
+            tools:srcCompat="@drawable/perfil" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="635dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
         android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,12 +104,13 @@
                         android:text="Nombre:"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/txtNameUser"
                         style="@style/TextViewSecondaryStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@android:color/transparent"
                         android:text="Juan Pérez" />
 
                     <ImageButton
@@ -114,6 +118,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="editName"
                         android:src="@drawable/ic_edit" />
                 </LinearLayout>
 
@@ -131,12 +136,13 @@
                         android:text="Email:"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/txtEmailUser"
                         style="@style/TextViewSecondaryStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@android:color/transparent"
                         android:text="juan@ejemplo.com" />
 
                     <ImageButton
@@ -144,6 +150,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="editEmail"
                         android:src="@drawable/ic_edit" />
                 </LinearLayout>
 
@@ -163,6 +170,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:onClick="saveTextUser"
                         android:paddingLeft="12dp"
                         android:paddingTop="8dp"
                         android:paddingRight="12dp"
@@ -274,11 +283,12 @@
                         android:layout_weight="1" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSaveEdit"
+                        android:id="@+id/btnChangeOpcion"
                         style="@style/ButtonBaseStyleOrange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="changePreferences"
                         android:paddingLeft="12dp"
                         android:paddingTop="8dp"
                         android:paddingRight="12dp"
@@ -306,6 +316,7 @@
                     style="@style/TextViewHeaderStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="7sp"
                     android:text="Rutina Actual"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -320,11 +331,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Tipo de rutina:"
+                        android:text="Nombre de rutina:"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtTypeRoutine"
+                        android:id="@+id/txtNameRoutine"
                         style="@style/TextViewSecondaryStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -337,18 +348,65 @@
                     style="@style/TextViewBaseStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="5sp"
                     android:text="Detalles:"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvRoutineDetails"
+                    android:id="@+id/txtRoutineDetails"
+                    style="@style/TextViewSecondaryStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_dark"
                     android:padding="12dp"
                     android:text="• Press banca: 3x10 (50kg)\n• Sentadillas: 4x12 (60kg)\n• Dominadas: 3x8\n• Peso muerto: 3x5 (80kg)\n• Press militar: 3x8 (30kg)"
                     android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnChangeRutine"
+                        style="@style/ButtonBaseStyleOrange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="changeRutines"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/btnUpdateText" />
+
+                    <Space
+                        android:layout_width="17dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
             </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDeleteUser"
+                style="@style/ButtonBaseStyleDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_red"
+                android:onClick="deletePerfil"
+                android:text="@string/btnDeleteUser" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40sp" />
 
             <!-- Sección 2: Preferencias de Rutina -->
 
@@ -363,11 +421,10 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="413dp"
         android:layout_height="59dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -377,6 +434,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnBack"
@@ -397,20 +459,26 @@
                 android:text="@string/btnSaveUser" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDeleteUser"
+                android:id="@+id/btnSalirUser"
                 style="@style/ButtonBaseStyleDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_background_red"
-                android:onClick="deletePerfil"
-                android:text="@string/btnDeleteUser" />
+                android:onClick="salir"
+                android:text="@string/btnDesconected" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

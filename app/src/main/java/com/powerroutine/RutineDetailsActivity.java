@@ -125,7 +125,11 @@ public class RutineDetailsActivity extends AppCompatActivity {
             Button btnHecho = card.findViewById(R.id.btnComplete);
 
             titulo.setText(cardEjercice.getTitulo());
-            descipcion.setText(cardEjercice.getDescripcion());
+            String desc=cardEjercice.getDescripcion();
+            if(desc.length()<32){
+                desc+="\n";
+            }
+            descipcion.setText(desc);
             musculo.setText(cardEjercice.getMuscle());
             imagen.setImageResource(cardEjercice.getImagenResId());
             series.setText(cardEjercice.getSeries());

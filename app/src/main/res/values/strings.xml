@@ -38,7 +38,7 @@
     <string name="btnDeleteUser">Eliminar</string>
     <string name="btnSaveUser">Guardar</string>
     <string name="btnUpdateText">Cambiar</string>
-
+    <string name="btnDesconected">Salir</string>
 
 
 </resources>

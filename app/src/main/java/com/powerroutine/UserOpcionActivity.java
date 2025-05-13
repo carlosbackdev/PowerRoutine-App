@@ -16,6 +16,7 @@ import com.powerroutine.dtd.LoginDtd;
 import com.powerroutine.interfaces.LoginCallback;
 import com.powerroutine.interfaces.UpdateUserCallBack;
 import com.powerroutine.model.UserModel;
+import com.powerroutine.service.UserService;
 
 public class UserOpcionActivity extends AppCompatActivity {
     private UserModel user;
@@ -100,37 +101,10 @@ public class UserOpcionActivity extends AppCompatActivity {
     public void savePreferences(View v) {
         if (opcionDays != 0 && opcionLevel != 0 && opcionObjetive != null) {
             insertarModelo();
-            try{
-                userData.updateUser(user, new UpdateUserCallBack() {
-                    @Override
-                    public void onSuccess (LoginDtd loginResponse) {
-                        loginDtd = loginResponse;
-                        mostrarToast(loginDtd.getRespuesta());
-                        System.out.println(loginDtd.toString());
-
-                        UserStatic.user=loginDtd.getUserModel();
-                        startActivity(rutineSelectedActivty);
-                        finish();
-
-                        if(loginDtd.getUserModel() != null){
-                            user=loginDtd.getUserModel();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(String errorMessage) {
-                        // Verificamos si errorMessage es nulo
-                        if (errorMessage == null || errorMessage.isEmpty()) {
-                            errorMessage = "Unknown error occurred.";
-                        }
-                        mostrarToast( errorMessage);
-                    }
-                });
-
-            } catch (Exception e) {
-                System.out.println(e);
-                throw new RuntimeException(e);
-            }
+            UserService userService = new UserService();
+            userService.updateUser(user, this);
+            startActivity(rutineSelectedActivty);
+            finish();
         }
     }
         public void insertarModelo() {

@@ -68,6 +68,8 @@
                     style="@style/TextViewBaseStyleSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="1sp"
                     android:text="descripcion"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
