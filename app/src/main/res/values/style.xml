@@ -7,6 +7,17 @@
         <item name="android:fontFamily">@font/baloo_2</item>
     </style>
 
+    <style name="TextViewOnBase">
+        <item name="android:textColor">@color/text_onbase</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/fredoka_one</item>
+    </style>
+    <style name="TextViewOnBaseSmall">
+        <item name="android:textColor">@color/text_onbase</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/baloo_2</item>
+    </style>
+
     <style name="TextViewBaseStyleSmall">
         <item name="android:textColor">@color/text_white</item>
         <item name="android:textSize">13sp</item>

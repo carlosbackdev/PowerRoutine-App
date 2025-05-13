@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.powerroutine.Componets.Navegator;
+import com.powerroutine.Componets.Theme;
 import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.RutinesListStatic;
 import com.powerroutine.Static.UserStatic;
@@ -28,6 +30,7 @@ public class PerfilActivity extends AppCompatActivity {
     private TextView txtGoalUser,txtLeveUser,txtDaysUser,txtNameRoutine,txtRoutineDetails;
     private EditText txtNameUser,txtEmailUser;
     private Button btnSaveEdit,btnSaveUser;
+    private RadioButton btnDark,btnLight;
     private boolean isSafeSave;
 
     @Override
@@ -36,8 +39,10 @@ public class PerfilActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_perfil);
 
-        user= UserStatic.user;
-        userOptional= UserStatic.user;
+        if(UserStatic.user !=null){
+            user= UserStatic.user;
+            userOptional= UserStatic.user;
+        }
         ImageButton btnHome = findViewById(R.id.btnHome);
         ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
@@ -54,10 +59,16 @@ public class PerfilActivity extends AppCompatActivity {
         txtRoutineDetails=findViewById(R.id.txtRoutineDetails);
         btnSaveEdit=findViewById(R.id.btnSaveEdit);
         btnSaveUser=findViewById(R.id.btnSaveUser);
+        btnDark=findViewById(R.id.btnDark);
+        btnLight=findViewById(R.id.btnLight);
 
         isSafeSave= false;
 
-        cargarDatos();
+        if(UserStatic.user !=null){
+            cargarDatos();
+        }
+
+
 
     }
 
@@ -143,6 +154,16 @@ public class PerfilActivity extends AppCompatActivity {
          btnSaveUser.setBackgroundResource(R.drawable.button_background_dark);
          isSafeSave= false;
         }
+    }
+
+    public void changeTema(View v){
+        if(btnLight.isChecked()){
+            Theme.setTheme(this,"light");
+        }
+        if (btnDark.isChecked()){
+            Theme.setTheme(this,"dark");
+        }
+
     }
 
 

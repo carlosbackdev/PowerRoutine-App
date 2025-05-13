@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="dark_black">#262525</color>
+    <color name="dark_black">#333333</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="text_grey">#B0BEC5</color>
-    <color name="main_background">#121212</color>
+    <color name="main_background">#FAFAFA</color>
     <color name="primary_color">#FF6F00</color>
     <color name="primary_color_intense">#ED6500</color>
     <color name="secundary_color">#FFC107</color>
-    <color name="border_color">#37474F</color>
+    <color name="border_color">#B0BEC5</color>
     <color name="green">#4CAF50</color>
     <color name="red">#D32F2F</color>
-    <color name="card_background">#1E1E1E</color>
-    <color name="yellow">#E9C912</color>
-    <color name="main_background_dark">#1E1E1E</color>
-
+    <color name="card_background">#494949</color> <!-- mantenido como pediste -->
+    <color name="yellow">#FBC02D</color>
+    <color name="main_background_dark">#E0E0E0</color> <!-- útil si lo usas en secciones secundarias -->
+    <color name="text_onbase">#FF000000</color>
 
 </resources>

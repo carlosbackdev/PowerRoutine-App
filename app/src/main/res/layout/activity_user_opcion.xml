@@ -64,7 +64,7 @@
 
                 <TextView
                     android:id="@+id/titulo1"
-                    style="@style/TextViewBaseStyle"
+                    style="@style/TextViewOnBase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/daysweek"
@@ -143,7 +143,7 @@
 
             <TextView
                 android:id="@+id/textView7"
-                style="@style/TextViewBaseStyle"
+                style="@style/TextViewOnBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/level"
@@ -209,7 +209,7 @@
 
             <TextView
                 android:id="@+id/textView8"
-                style="@style/TextViewBaseStyle"
+                style="@style/TextViewOnBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/objetiveText"

@@ -89,7 +89,7 @@
 
     <TextView
         android:id="@+id/txtDayRestChoice"
-        style="@style/TextViewBaseStyle"
+        style="@style/TextViewOnBase"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:text="@string/dayRestChoice"

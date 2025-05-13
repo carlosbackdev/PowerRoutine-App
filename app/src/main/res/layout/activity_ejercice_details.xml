@@ -246,7 +246,7 @@
 
                         <TextView
                             android:id="@+id/textView15"
-                            style="@style/TextViewBaseStyleSmall"
+                            style="@style/TextViewOnBase"
                             android:layout_width="166dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -256,7 +256,7 @@
 
                         <TextView
                             android:id="@+id/txtMaterial"
-                            style="@style/TextViewBaseStyleSmall"
+                            style="@style/TextViewOnBaseSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10sp"
@@ -266,7 +266,7 @@
 
                         <TextView
                             android:id="@+id/textView16"
-                            style="@style/TextViewBaseStyleSmall"
+                            style="@style/TextViewOnBase"
                             android:layout_width="165dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -275,7 +275,7 @@
 
                         <TextView
                             android:id="@+id/txtDesc"
-                            style="@style/TextViewBaseStyleSmall"
+                            style="@style/TextViewOnBaseSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10sp"
