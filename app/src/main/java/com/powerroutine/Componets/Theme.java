@@ -38,5 +38,14 @@ import androidx.appcompat.app.AppCompatDelegate;
 
             AppCompatDelegate.setDefaultNightMode(newTheme);
         }
+        public static String getTheme(Context context) {
+            SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            int theme = preferences.getInt(THEME_KEY, THEME_DARK);
+            if (theme == THEME_DARK) {
+               return "dark";
+            } else {
+               return "light";
+            }
+        }
 
 }

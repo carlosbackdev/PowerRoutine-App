@@ -69,6 +69,11 @@ public class PerfilActivity extends AppCompatActivity {
             cargarDatos();
         }
 
+        if(Theme.getTheme(this).equalsIgnoreCase("dark")){
+            btnDark.setChecked(true);
+        }else{
+            btnLight.setChecked(true);
+        }
 
 
     }
@@ -187,10 +192,10 @@ public class PerfilActivity extends AppCompatActivity {
     public void back(View v){
         finish();
     }
-    public void finallySession(View v){
-        Intent login=new Intent(this, LoginActivity.class);
+    public void salir(View v){
+        Intent main=new Intent(this, MainActivity.class);
         UserSession.clearUserSession(this);
-        startActivity(login);
+        startActivity(main);
     }
 
 }

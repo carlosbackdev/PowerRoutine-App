@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         Theme.loadTheme(this);
+
 
         setContentView(R.layout.activity_main);
 
@@ -48,19 +51,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void carga() {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(100);
+
         executorService.execute(() -> {
-            // Realiza la carga en segundo plano
             LoadStatic loadStaticHilo = new LoadStatic();
             loadStaticHilo.start();
             try {
                 loadStaticHilo.join();
-                Thread.sleep(5500);
+
+                int duration = 5500;
+                int interval = 100;
+                int steps = duration / interval;
+
+                for (int i = 0; i <= steps; i++) {
+                    int progress = (i * 100) / steps;
+                    mainHandler.post(() -> progressBar.setProgress(progress));
+                    Thread.sleep(interval);
+                }
+
                 nextActivity();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            mainHandler.post(this::nextActivity);
         });
     }
     private void nextActivity(){

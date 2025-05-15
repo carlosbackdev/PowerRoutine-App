@@ -87,7 +87,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
 
         ejerciciesMaxChoice();
         CargarRutinas();
-        System.out.println(rutinas.toString());
+
 
 
 
@@ -119,11 +119,25 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 public void onFailure(String error) {
                     System.out.println("Error al cargar rutinas: "+error);
                     mostrarToast("Error al cargar rutinas:");
+                    try {
+                        Thread.sleep(1500);
+                        reset(null);
+
+                    }catch (Exception i){
+                        System.out.println("Error al cargar rutinas: "+i.getMessage());
+                    }
                 }
             });
 
         }catch (Exception e){
             System.out.println("Error al cargar rutinas: "+e.getMessage());
+            try {
+                Thread.sleep(1000);
+                reset(null);
+
+            }catch (Exception i){
+                System.out.println("Error al cargar rutinas: "+i.getMessage());
+            }
             mostrarToast("Error al cargar rutinas:");
         }
     }
