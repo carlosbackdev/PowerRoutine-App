@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
+import com.powerroutine.CalendarActivity;
 import com.powerroutine.HomeActivity;
 import com.powerroutine.PerfilActivity;
 import com.powerroutine.R;
@@ -23,7 +24,7 @@ public class Navegator {
     private Context context;
     private String activity;
 
-    private Intent home,perfil;
+    private Intent home,perfil,calendar;
 
 
     public Navegator(ImageButton btnHome, ImageButton btnPerfil, ImageButton btnCalendar, Context context, String activity ) {
@@ -35,6 +36,7 @@ public class Navegator {
 
         home=new Intent(context, HomeActivity.class);
         perfil=new Intent(context, PerfilActivity.class);
+        calendar=new Intent(context, CalendarActivity.class);
 
 
         setupListeners();
@@ -70,6 +72,7 @@ public class Navegator {
     public void calendar(View v) {
         // Acción para el botón de calendario
         if(!activity.equals("calendar")){
+            context.startActivity(calendar);
 
         }
     }

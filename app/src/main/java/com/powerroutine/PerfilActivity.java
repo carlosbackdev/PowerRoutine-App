@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.powerroutine.Componets.Navegator;
 import com.powerroutine.Componets.Theme;
+import com.powerroutine.Componets.UserSession;
 import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.RutinesListStatic;
 import com.powerroutine.Static.UserStatic;
@@ -180,9 +181,16 @@ public class PerfilActivity extends AppCompatActivity {
     public void deletePerfil(View v){
         Intent login=new Intent(this, LoginActivity.class);
         userService.deleteUser(user,this,login);
+        UserSession.clearUserSession(this);
+        startActivity(login);
     }
     public void back(View v){
         finish();
+    }
+    public void finallySession(View v){
+        Intent login=new Intent(this, LoginActivity.class);
+        UserSession.clearUserSession(this);
+        startActivity(login);
     }
 
 }

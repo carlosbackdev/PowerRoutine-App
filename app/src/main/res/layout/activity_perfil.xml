@@ -358,6 +358,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_dark"
+                    android:onClick="finallySession"
                     android:padding="12dp"
                     android:text="• Press banca: 3x10 (50kg)\n• Sentadillas: 4x12 (60kg)\n• Dominadas: 3x8\n• Peso muerto: 3x5 (80kg)\n• Press militar: 3x8 (30kg)"
                     android:textSize="14sp" />

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import com.powerroutine.Componets.Theme;
+import com.powerroutine.Componets.UserSession;
 import com.powerroutine.Static.EjercicesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         }else{
                             UserStatic.user=loginDtd.getUserModel();
+                            UserSession.saveUserSession(LoginActivity.this,loginDtd.getUserModel());
                             startActivity(homeActivity);
                             finish();
                         }

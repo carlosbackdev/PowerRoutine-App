@@ -36,8 +36,9 @@ public class CalendarActivity extends AppCompatActivity {
         ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
         new Navegator(btnHome,btnPerfil,btnCalendar,this,"calendar");
-        txtCalendar.findViewById(R.id.txtDayCalendar);
+        txtCalendar=findViewById(R.id.txtDayCalendar);
 
+        System.out.println("USUARIO CALENDAR: "+ UserStatic.user);
         user= UserStatic.user;
 
         int contador=0;

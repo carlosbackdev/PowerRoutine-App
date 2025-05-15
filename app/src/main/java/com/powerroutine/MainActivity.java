@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Componets.Theme;
+import com.powerroutine.Componets.UserSession;
+import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
             loadStaticHilo.start();
             loadStaticHilo.join();
             Intent intent= new Intent(this, LoginActivity.class);
+            if(UserSession.getUserSession(this) != null){
+                UserStatic.user= UserSession.getUserSession(this);
+                intent= new Intent(this, HomeActivity.class);
+            }
             startActivity(intent);
         } catch (Exception e) {
             throw new RuntimeException(e);

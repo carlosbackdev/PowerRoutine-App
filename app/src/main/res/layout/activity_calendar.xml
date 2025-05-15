@@ -96,7 +96,8 @@
         android:onClick="url"
         android:text="Dietas para tu semana"
         android:textColor="@color/secundary_color"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="700dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDayCalendar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
