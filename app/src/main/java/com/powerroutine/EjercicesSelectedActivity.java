@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.powerroutine.Componets.CardCreation;
 import com.powerroutine.Componets.CardRutine;
 import com.powerroutine.Static.EjercicesStatic;
+import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.EjerciceData;
 import com.powerroutine.controllerData.RutinaData;
@@ -29,6 +30,8 @@ import com.powerroutine.interfaces.UpdateRutineUserCallBack;
 import com.powerroutine.model.EjerciceModel;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
+import com.powerroutine.model.UserPreferences;
+import com.powerroutine.service.UserCompletesService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -284,6 +287,17 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                     System.out.println("ejercicios selcecionads"+ejeciciosSelected);
                     if(rutinas.isEmpty()){
                         UserStatic.user=user;
+                        try{
+                            Thread.sleep(100);
+                            UserCompletesService userCompletesService= new UserCompletesService();
+                            userCompletesService.CargarItemComplete();
+                            Thread.sleep(100);
+                            UserPreferences userPreferences= new UserPreferences(UserStatic.user);
+                            UserPreferencesStatic.userPreferences=userPreferences;
+                            Thread.sleep(100);
+                        }catch (Exception e){
+                            System.out.println("Error al cargar el usuario");
+                        }
                         startActivity(homeActivity);
                         finish();
                     }

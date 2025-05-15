@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.powerroutine.Componets.Theme;
 import com.powerroutine.Componets.UserSession;
 import com.powerroutine.Static.EjercicesStatic;
+import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;
 import com.powerroutine.controllerData.UserData;
@@ -23,9 +24,7 @@ import com.powerroutine.form.LoginValidate;
 import com.powerroutine.model.UserModel;
 import com.powerroutine.interfaces.LoginCallback;
 import com.powerroutine.model.UserPreferences;
-import com.powerroutine.service.BodyService;
-import com.powerroutine.service.EjerciceService;
-import com.powerroutine.service.MuscleService;
+import com.powerroutine.service.UserCompletesService;
 import com.powerroutine.utils.FocoChange;
 
 
@@ -93,6 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                         }else{
                             UserStatic.user=loginDtd.getUserModel();
                             UserSession.saveUserSession(LoginActivity.this,loginDtd.getUserModel());
+                            try{
+                                Thread.sleep(100);
+                                UserCompletesService userCompletesService= new UserCompletesService();
+                                userCompletesService.CargarItemComplete();
+                                Thread.sleep(100);
+                                UserPreferences userPreferences= new UserPreferences(UserStatic.user);
+                                UserPreferencesStatic.userPreferences=userPreferences;
+                                Thread.sleep(100);
+                            }catch (Exception e){
+                                System.out.println("Error al cargar el usuario");
+                            }
                             startActivity(homeActivity);
                             finish();
                         }

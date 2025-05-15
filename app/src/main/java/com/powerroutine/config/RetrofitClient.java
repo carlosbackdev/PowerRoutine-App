@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.2.2:8080/";  // La URL base de tu backend
+    private static final String BASE_URL = "https://power-routine-api-5dfn4.ondigitalocean.app";  // La URL base de tu backend
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {

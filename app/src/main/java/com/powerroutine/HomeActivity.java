@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.Navegator;
+import com.powerroutine.Static.MuscleStatic;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.RutinesListStatic;
 import com.powerroutine.Static.UserCompletesStatic;
@@ -67,13 +68,10 @@ public class HomeActivity extends AppCompatActivity {
         rutineDetailsActivity=new Intent(this,RutineDetailsActivity.class);
 
 
-        UserCompletesService userCompletesService= new UserCompletesService();
-        userCompletesService.CargarItemComplete();
 
-        UserPreferences userPreferences= new UserPreferences();
-        UserPreferencesStatic.userPreferences=userPreferences;
 
         CargarRutinas();
+
 
     }
 

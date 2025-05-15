@@ -74,8 +74,8 @@
 
                         <ImageView
                             android:id="@+id/imgEjerciceTecnica"
-                            android:layout_width="190dp"
-                            android:layout_height="0dp"
+                            android:layout_width="140dp"
+                            android:layout_height="145dp"
                             android:scaleType="fitXY"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -90,13 +90,13 @@
                             android:layout_height="wrap_content"
                             android:background="#AF232020"
                             android:text="@string/ejercideDetailTecnica"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgEjerciceTecnica"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.504"
+                            app:layout_constraintHorizontal_bias="0.507"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.896" />
+                            app:layout_constraintVertical_bias="0.92" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -106,15 +106,15 @@
 
                         <ImageView
                             android:id="@+id/imgEjerciceMuscle"
-                            android:layout_width="190dp"
-                            android:layout_height="0dp"
+                            android:layout_width="140dp"
+                            android:layout_height="145dp"
                             android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
+                            app:layout_constraintVertical_bias="0.542"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <TextView
@@ -124,13 +124,12 @@
                             android:layout_height="wrap_content"
                             android:background="#AF232020"
                             android:text="@string/ejercideDetailMuscle"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="@+id/imgEjerciceMuscle"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.495"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.896" />
+                            app:layout_constraintVertical_bias="0.892" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -169,7 +168,7 @@
                                 android:gravity="left"
                                 android:text="Repeticiones"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/txtRepeticiones"
@@ -179,7 +178,7 @@
                                 android:layout_weight="1"
                                 android:text="TextView"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -196,7 +195,7 @@
                                 android:gravity="left"
                                 android:text="Series"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/txtSeries"
@@ -206,7 +205,7 @@
                                 android:layout_weight="1"
                                 android:text="TextView"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -223,7 +222,7 @@
                                 android:gravity="left"
                                 android:text="Descanso"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/txtDescanso"
@@ -233,7 +232,7 @@
                                 android:layout_weight="1"
                                 android:text="TextView"
                                 android:textColor="@color/secundary_color"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -251,8 +250,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
+                            android:paddingBottom="2sp"
                             android:text="Material"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/txtMaterial"
@@ -262,7 +262,7 @@
                             android:layout_marginStart="10sp"
                             android:gravity="left"
                             android:text="TextView"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/textView16"
@@ -270,8 +270,9 @@
                             android:layout_width="165dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:paddingBottom="2sp"
                             android:text="Descripcion"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/txtDesc"
@@ -281,7 +282,7 @@
                             android:layout_marginStart="10sp"
                             android:gravity="left"
                             android:text="TextView"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 

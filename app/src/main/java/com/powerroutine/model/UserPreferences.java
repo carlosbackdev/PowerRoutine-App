@@ -9,7 +9,8 @@ public class UserPreferences {
     private LevelRange levelRange;
     private ObjetiveModel objetive;
 
-    public UserPreferences() {
+    public UserPreferences(UserModel user) {
+        this.user= user;
         if(this.user == null){
             throw new IllegalArgumentException("El usuario no puede ser null");
         }

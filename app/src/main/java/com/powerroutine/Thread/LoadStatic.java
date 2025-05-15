@@ -27,18 +27,16 @@ public class LoadStatic extends Thread{
     public void run(){
         MuscleService muscleService = new MuscleService();
         muscleService.CargarMusculos();
-
         BodyService bodyService = new BodyService();
         bodyService.CargarBodys();
-
         EjerciceService ejerciceService=new EjerciceService();
         ejerciceService.CargarEjercicios();
-
         ObjetiveService objetiveService =new ObjetiveService();
-        objetiveService.CargarEjercicios();
-
+        objetiveService.CargarObjetivos();
         LevelService levelService=new LevelService();
         levelService.cargarLevels();
+
+
     }
 
     @Override

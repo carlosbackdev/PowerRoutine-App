@@ -11,7 +11,7 @@ import com.powerroutine.interfaces.ObjetiveCallBack;
 public class ObjetiveService {
     private ObjetiveData objetiveData= new ObjetiveData();
 
-    public void CargarEjercicios(){
+    public void CargarObjetivos(){
         try{
             objetiveData.getAllObjetvies(new ObjetiveCallBack() {
                 @Override

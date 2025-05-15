@@ -2,6 +2,8 @@ package com.powerroutine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +13,24 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Componets.Theme;
 import com.powerroutine.Componets.UserSession;
+import com.powerroutine.Static.BodyStatic;
+import com.powerroutine.Static.EjercicesStatic;
+import com.powerroutine.Static.LevelStatic;
+import com.powerroutine.Static.MuscleStatic;
+import com.powerroutine.Static.ObjetiveStatic;
+import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;
+import com.powerroutine.model.UserPreferences;
+import com.powerroutine.service.UserCompletesService;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +40,58 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
-        LoadStatic loadStaticHilo = new LoadStatic();
         try {
-            loadStaticHilo.start();
-            loadStaticHilo.join();
-            Intent intent= new Intent(this, LoginActivity.class);
-            if(UserSession.getUserSession(this) != null){
-                UserStatic.user= UserSession.getUserSession(this);
-                intent= new Intent(this, HomeActivity.class);
-            }
-            startActivity(intent);
+            carga();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+    }
+    private void carga() {
+        executorService.execute(() -> {
+            // Realiza la carga en segundo plano
+            LoadStatic loadStaticHilo = new LoadStatic();
+            loadStaticHilo.start();
+            try {
+                loadStaticHilo.join();
+                Thread.sleep(5500);
+                nextActivity();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            mainHandler.post(this::nextActivity);
+        });
+    }
+    private void nextActivity(){
+        System.out.println("terminado"+MuscleStatic.muscleDTD);
+        Intent intent2= new Intent(this, LoginActivity.class);
+        try {
+
+            if(UserSession.getUserSession(this) != null){
+                UserStatic.user= UserSession.getUserSession(this);
+                try{
+                    Thread.sleep(100);
+                    UserCompletesService userCompletesService= new UserCompletesService();
+                    userCompletesService.CargarItemComplete();
+                    Thread.sleep(100);
+                    UserPreferences userPreferences= new UserPreferences(UserStatic.user);
+                    UserPreferencesStatic.userPreferences=userPreferences;
+                    Thread.sleep(100);
+                }catch (Exception e){
+                    System.out.println("Error al cargar el usuario");
+                }
+                Intent intent= new Intent(this, HomeActivity.class);
+                startActivity(intent);
+            }
+            if(UserStatic.user == null){
+                startActivity(intent2);
+            }
+
+        }catch (Exception e){
+
+        }
+
 
     }
 }
