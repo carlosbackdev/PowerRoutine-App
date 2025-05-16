@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,9 +35,7 @@ import java.util.List;
 public class RutineDetailsActivity extends AppCompatActivity {
     private RutineModel rutineModel;
     private UserModel user;
-    private BodyData bodyData=new BodyData();
 
-    private List<BodyModel> bodysModels;
     private TableLayout tableLayout;
     private LayoutInflater inflater;
     private ArrayList<CardEjercice> cardsComponents;
@@ -121,12 +118,11 @@ public class RutineDetailsActivity extends AppCompatActivity {
             TextView musculo = card.findViewById(R.id.txtMusclePrincipal);
             TextView series = card.findViewById(R.id.txtSeries);
             TextView repeticiones = card.findViewById(R.id.txtRepeticiones);
-            Button btnDetalles = card.findViewById(R.id.btnDetails);
             Button btnHecho = card.findViewById(R.id.btnComplete);
 
             titulo.setText(cardEjercice.getTitulo());
             String desc=cardEjercice.getDescripcion();
-            if(desc.length()<32){
+            if(desc.length()<31){
                 desc+="\n";
             }
             descipcion.setText(desc);
@@ -146,8 +142,7 @@ public class RutineDetailsActivity extends AppCompatActivity {
             }
 
 
-            btnDetalles.setOnClickListener(v -> {
-                // Acción al hacer clic en "Detalles"
+            card.setOnClickListener(v -> {
                 ejerciceDetailsActivity.putExtra("id",cardEjercice.getId());
                 ejerciceDetailsActivity.putExtra("rutine",rutineModel);
                 startActivity(ejerciceDetailsActivity);
@@ -188,10 +183,6 @@ public class RutineDetailsActivity extends AppCompatActivity {
 
     }
 
-
-    public void mostrarToast(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-    }
     public void complete(View v){
         if(!isCompleteRutine){
             UserCompletesModel userCompletesModel=new UserCompletesModel();

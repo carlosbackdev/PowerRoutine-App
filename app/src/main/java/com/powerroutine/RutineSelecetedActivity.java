@@ -29,7 +29,9 @@ import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RutineSelecetedActivity extends AppCompatActivity {
     private TextView txtDay,txtDayRestChoice;
@@ -110,13 +112,11 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(String error) {
                     System.out.println("Error al cargar rutinas:"+error);
-                    mostrarToast("Error al cargar rutinas:");
                 }
             });
 
         }catch (Exception e){
             System.out.println("Error al cargar rutinas: "+e.getMessage());
-            mostrarToast("Error al cargar rutinas:");
         }
     }
     public void cargarCardCompenent(){
@@ -132,6 +132,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                 }
             }
         }
+        Set<Integer> uniqueIds = new HashSet<>();
+        cardsCompent.removeIf(card -> !uniqueIds.add(card.getId()));
+
         if(txtDay.getText().toString().equals("Completo")){
             cardsCompent.clear();
         }

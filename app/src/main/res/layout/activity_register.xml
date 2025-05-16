@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="489dp"
+            android:layout_height="456dp"
             android:background="@drawable/designer">
 
             <TextView
@@ -50,7 +50,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.103"
+                app:layout_constraintVertical_bias="0.228"
                 app:srcCompat="@drawable/appname" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,18 +61,15 @@
             android:background="@drawable/deg_orange"
             android:orientation="vertical"
             android:paddingLeft="40dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             android:paddingRight="40dp">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/txtNombre"
                 style="@style/TextViewPlainStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@string/registroNombre"
@@ -84,6 +81,7 @@
                 style="@style/TextViewPlainStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@string/registroEmail"
@@ -95,6 +93,7 @@
                 style="@style/TextViewPlainStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:text="@string/contraseñaPlain"
@@ -118,8 +117,9 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnRegister"
                     style="@style/ButtonBaseStyleDark"
-                    android:layout_width="70dp"
+                    android:layout_width="202dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:onClick="register"
                     android:text="@string/resgisterButton" />
@@ -129,12 +129,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/txtRegistre"

@@ -43,7 +43,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
     private EjerciceData ejerciceData;
     private ArrayList<RutineModel> rutinas;
     private Spinner spnTypeRutine;
-    private TextView titleRutine,txtChoiceRest;
+    private TextView titleRutine,txtChoiceRest,txtCarga;
     private String titleRutineString,restChoice;
     private ArrayList<EjerciceModel> ejercices,ejercicesOfRutine,ejeciciosSelected;
     private ArrayList<CardRutine> cardsCompent= new ArrayList<>();
@@ -73,6 +73,7 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
         restChoice=txtChoiceRest.getText().toString();
         this.tableLayout=findViewById(R.id.tablaEjercicios);
         this.inflater=LayoutInflater.from(this);
+        this.txtCarga=findViewById(R.id.txtCarga);
 
 
         rutineData=new RutinaData();
@@ -118,7 +119,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(String error) {
                     System.out.println("Error al cargar rutinas: "+error);
-                    mostrarToast("Error al cargar rutinas:");
                     try {
                         Thread.sleep(1500);
                         reset(null);
@@ -138,7 +138,6 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
             }catch (Exception i){
                 System.out.println("Error al cargar rutinas: "+i.getMessage());
             }
-            mostrarToast("Error al cargar rutinas:");
         }
     }
 
@@ -274,6 +273,10 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
         btnSave.setBackgroundResource(R.drawable.button_background_dark);
         typeRutine.clear();
         CargarRutinas();
+        txtCarga.setText("");
+        txtCarga.setPadding(0,0,0,0);
+        txtCarga.setWidth(0);
+        txtCarga.setHeight(0);
 
     }
 
@@ -319,13 +322,11 @@ public class EjercicesSelectedActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(String error) {
                     System.out.println("Error al cargar ejercicios: "+error);
-                    mostrarToast("Error al cargar ejercicios:");
                 }
             });
 
         }catch (Exception e){
             System.out.println("Error al cargar rutinas: "+e.getMessage());
-            mostrarToast("Error al cargar rutinas:");
         }
 
     }

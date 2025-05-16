@@ -5,20 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.ProgressBar;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.powerroutine.Componets.Theme;
 import com.powerroutine.Componets.UserSession;
-import com.powerroutine.Static.BodyStatic;
-import com.powerroutine.Static.EjercicesStatic;
-import com.powerroutine.Static.LevelStatic;
 import com.powerroutine.Static.MuscleStatic;
-import com.powerroutine.Static.ObjetiveStatic;
 import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.Thread.LoadStatic;

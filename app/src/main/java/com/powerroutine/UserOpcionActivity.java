@@ -1,11 +1,9 @@
 package com.powerroutine;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.UserData;
 import com.powerroutine.dtd.LoginDtd;
-import com.powerroutine.interfaces.LoginCallback;
-import com.powerroutine.interfaces.UpdateUserCallBack;
 import com.powerroutine.model.UserModel;
 import com.powerroutine.service.UserService;
 
@@ -112,8 +108,6 @@ public class UserOpcionActivity extends AppCompatActivity {
             user.setLevel(opcionLevel);
             user.setObjetive(objetive);
     }
-    private void mostrarToast(String mensaje) {
-        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
-    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.powerroutine;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +8,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.interfaces.RegisterCallBack;
@@ -92,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 txtEmail.setText(errorMessage);
                                 txtEmail.setTextColor(Color.RED);
                             }
-                            mostrarToast( "Error api rest, Data base");
                         }
                     }
                 });

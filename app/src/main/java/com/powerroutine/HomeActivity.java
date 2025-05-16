@@ -17,18 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.powerroutine.Componets.CardHome;
 import com.powerroutine.Componets.CardHomeCreation;
 import com.powerroutine.Componets.Navegator;
-import com.powerroutine.Static.MuscleStatic;
+import com.powerroutine.Componets.UserSession;
 import com.powerroutine.Static.RutineStatic;
 import com.powerroutine.Static.RutinesListStatic;
 import com.powerroutine.Static.UserCompletesStatic;
-import com.powerroutine.Static.UserPreferencesStatic;
 import com.powerroutine.Static.UserStatic;
 import com.powerroutine.controllerData.RutinaData;
 import com.powerroutine.dtd.RutineListDtd;
 import com.powerroutine.interfaces.RutineListCallBack;
 import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserModel;
-import com.powerroutine.model.UserPreferences;
 import com.powerroutine.service.UserCompletesService;
 
 import java.util.ArrayList;
@@ -68,8 +66,6 @@ public class HomeActivity extends AppCompatActivity {
         rutineDetailsActivity=new Intent(this,RutineDetailsActivity.class);
 
 
-
-
         CargarRutinas();
 
 
@@ -88,13 +84,11 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(String error) {
                     System.out.println("Error al cargar rutinas: "+error);
-                    mostrarToast("Error al cargar rutinas:");
                 }
             });
 
         }catch (Exception e){
             System.out.println("Error al cargar rutinas: "+e.getMessage());
-            mostrarToast("Error al cargar rutinas:");
         }
     }
     public void cargarCardCompenent(){

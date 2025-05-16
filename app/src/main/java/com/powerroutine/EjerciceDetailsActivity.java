@@ -1,6 +1,5 @@
 package com.powerroutine;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -218,13 +217,6 @@ public class EjerciceDetailsActivity extends AppCompatActivity {
             itemCompleted();
         }
 
-    }
-
-
-
-
-    private void mostrarToast(String mensaje) {
-        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
 
 }
