@@ -12,11 +12,19 @@ public class TypeRutineDtd {
     }
 
     public TypeRutineDtd(int days) {
+        if(days == 2) {
+            this.typeRutine = new ArrayList<>();
+            typeRutine.add("Full body");
+        }
         if(days == 3){
             this.typeRutine = new ArrayList<>();
             typeRutine.add("Full body");
             typeRutine.add("Push Pull");
             typeRutine.add("Push Pull Leg");
+        }if(days == 4){
+            this.typeRutine = new ArrayList<>();
+            typeRutine.add("Push Pull Basic");
+            typeRutine.add("Weider Recomendada");
         }else{
             this.typeRutine = new ArrayList<>();
         }

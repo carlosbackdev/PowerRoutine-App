@@ -16,8 +16,9 @@ import com.powerroutine.model.RutineModel;
 import com.powerroutine.model.UserCompletesModel;
 import com.powerroutine.model.UserModel;
 
+
 public class CalendarActivity extends AppCompatActivity {
-    private boolean weekComlpete;
+    private boolean weekComplete;
     private UserModel user;
     private TextView txtCalendar;
 
@@ -30,41 +31,46 @@ public class CalendarActivity extends AppCompatActivity {
         ImageButton btnHome = findViewById(R.id.btnHome);
         ImageButton btnPerfil = findViewById(R.id.btnPerfil);
         ImageButton btnCalendar = findViewById(R.id.btnCalendar);
-        new Navegator(btnHome,btnPerfil,btnCalendar,this,"calendar");
-        txtCalendar=findViewById(R.id.txtDayCalendar);
+        new Navegator(btnHome, btnPerfil, btnCalendar, this, "calendar");
+        txtCalendar = findViewById(R.id.txtDayCalendar);
 
-        System.out.println("USUARIO CALENDAR: "+ UserStatic.user);
-        user= UserStatic.user;
 
-        int contador=0;
-        weekComlpete=false;
+        System.out.println("USUARIO CALENDAR: " + UserStatic.user);
+        user = UserStatic.user;
 
-        for(RutineModel rutina: RutinesListStatic.rutinas.getRutinas()){
-            for(UserCompletesModel userCompletesModel: UserCompletesStatic.userCompletesDTD.getUserCompletesModel()){
-                if(userCompletesModel.getIdItem() == rutina.getId()){
-                    if(userCompletesModel.isCompleted()){
+        int contador = 0;
+        weekComplete = false;
+
+
+        if (RutinesListStatic.rutinas != null && RutinesListStatic.rutinas.getRutinas() != null &&
+                UserCompletesStatic.userCompletesDTD != null && UserCompletesStatic.userCompletesDTD.getUserCompletesModel() != null) {
+
+            for (RutineModel rutina : RutinesListStatic.rutinas.getRutinas()) {
+                for (UserCompletesModel userCompletesModel : UserCompletesStatic.userCompletesDTD.getUserCompletesModel()) {
+                    if (userCompletesModel.getIdItem() == rutina.getId() && userCompletesModel.isCompleted()) {
                         contador++;
                     }
                 }
             }
-        }
-        if(contador == user.getDaysWeek()){
-            weekComlpete=true;
+        } else {
+            txtCalendar.setText("Rutinas por completar esta semana: " +user.getDaysWeek());
+            return;
         }
 
-        if(weekComlpete){
+        if (contador == user.getDaysWeek()) {
+            weekComplete = true;
+        }
+
+        if (weekComplete) {
             txtCalendar.setText("¡Semana Completada!");
-        }else{
-            txtCalendar.setText("Rutinas por completar esta semana:"+(user.getDaysWeek()-contador));
+        } else {
+            txtCalendar.setText("Rutinas por completar esta semana: " + (user.getDaysWeek() - contador));
         }
-
     }
 
-    public void url(View v){
+    public void url(View v) {
         Uri uri = Uri.parse("https://www.dietas.net/");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
-
-
     }
 }

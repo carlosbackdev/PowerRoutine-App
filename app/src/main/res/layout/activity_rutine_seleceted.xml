@@ -50,9 +50,11 @@
 
         <Spinner
             android:id="@+id/spnTypeRutine"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="31dp"
             android:background="@drawable/spinner_backgorund"
+            android:paddingLeft="3sp"
+            android:paddingRight="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.731"

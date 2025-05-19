@@ -124,6 +124,9 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         CardCreation cardCreation = new CardCreation(tableLayout,cardsCompent);
         cardsCompent = cardCreation.createCardsRutines(this, rutinas, typeRutine);
 
+        Set<Integer> seenIds = new HashSet<>();
+        cardsCompent.removeIf(card -> !seenIds.add(card.getId()));
+
         if (rutinaSaved.size()>0) {
             for (int i = 0; i < cardsCompent.size(); i++) {
                 if (incompatibles != null && incompatibles.contains(cardsCompent.get(i).getId())) {
@@ -132,8 +135,6 @@ public class RutineSelecetedActivity extends AppCompatActivity {
                 }
             }
         }
-        Set<Integer> uniqueIds = new HashSet<>();
-        cardsCompent.removeIf(card -> !uniqueIds.add(card.getId()));
 
         if(txtDay.getText().toString().equals("Completo")){
             cardsCompent.clear();
