@@ -107,6 +107,7 @@ public class UserOpcionActivity extends AppCompatActivity {
             user.setDaysWeek(opcionDays);
             user.setLevel(opcionLevel);
             user.setObjetive(objetive);
+            UserStatic.user=user;
     }
 
 
