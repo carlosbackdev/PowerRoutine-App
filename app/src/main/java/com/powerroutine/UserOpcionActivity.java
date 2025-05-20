@@ -99,8 +99,16 @@ public class UserOpcionActivity extends AppCompatActivity {
             insertarModelo();
             UserService userService = new UserService();
             userService.updateUser(user, this);
-            startActivity(rutineSelectedActivty);
-            finish();
+            try{
+
+                Thread.sleep(100);
+                startActivity(rutineSelectedActivty);
+                finish();
+
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
         }
     }
         public void insertarModelo() {

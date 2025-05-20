@@ -1,37 +1,30 @@
 package com.powerroutine.dtd;
 
+import com.powerroutine.Static.UserStatic;
+
 import java.util.ArrayList;
 
 public class TypeRutineDtd {
     private ArrayList<String> typeRutine;
 
-    public TypeRutineDtd() {
-        this.typeRutine = new ArrayList<>();
-        typeRutine.add("Full body");
-        typeRutine.add("Push Pull");
-    }
-
     public TypeRutineDtd(int days) {
+        this.typeRutine = new ArrayList<>();
+
         if(days == 2) {
-            this.typeRutine = new ArrayList<>();
             typeRutine.add("Full body");
         }
         if(days == 3){
-            this.typeRutine = new ArrayList<>();
             typeRutine.add("Full body");
             typeRutine.add("Push Pull");
             typeRutine.add("Push Pull Leg");
         }if(days == 4){
-            this.typeRutine = new ArrayList<>();
             typeRutine.add("Push Pull Basic");
             typeRutine.add("Weider Recomendada");
-        }else{
-            this.typeRutine = new ArrayList<>();
         }
     }
 
     public ArrayList<String> getTypeRutine() {
-        return typeRutine;
+        return this.typeRutine;
     }
 
     public void setTypeRutine(ArrayList<String> typeRutine) {

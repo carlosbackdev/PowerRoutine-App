@@ -47,7 +47,7 @@ public class RutineSelecetedActivity extends AppCompatActivity {
     private ArrayList<RutineModel> rutinaSaved;
     private List<Integer> incompatibles;
     private RutineListDtd saveRutineList=new RutineListDtd();
-    private TypeRutineDtd typeRutineDtd;
+    private TypeRutineDtd typeRutineDtd=new TypeRutineDtd(UserStatic.user.getDaysWeek());
     private Spinner spnTypeRutine;
     private String typeRutine;
 
@@ -74,7 +74,6 @@ public class RutineSelecetedActivity extends AppCompatActivity {
         dayRestInt=user.getDaysWeek();
         dayString = txtDay.getText().toString();
         dayRest= txtDayRestChoice.getText().toString();
-        this.typeRutineDtd= new TypeRutineDtd(user.getDaysWeek());
         spnTypeRutine=findViewById(R.id.spnTypeRutine);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, typeRutineDtd.getTypeRutine());
         spnTypeRutine.setAdapter(adapter);
