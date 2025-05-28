@@ -1,7 +1,7 @@
 # 📱 PowerRoutine App 💪
 
 **PowerRoutine** es una aplicación Android desarrollada en **Java** que te ayuda a crear, personalizar y hacer seguimiento de tus rutinas de entrenamiento de forma inteligente y adaptada a tu perfil.  
-El backend está construido con **Spring Boot** y una base de datos **PostgreSQL**, siguiendo buenas prácticas de arquitectura tanto en el frontend como en el backend.
+El backend [ApiRest](https://github.com/carlosbackdev/PowerRoutineApi) está construido con **Spring Boot** y una base de datos **PostgreSQL**, siguiendo buenas prácticas de arquitectura tanto en el frontend como en el backend.
 
 ---
 
